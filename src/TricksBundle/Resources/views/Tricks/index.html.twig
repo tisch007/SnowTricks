@@ -1,0 +1,15 @@
+view all
+
+<ul>
+  {% for tricks in listTricks %}
+    <li>
+    	{{ tricks.titre }}
+    	</br>
+    	Rédigé par : {{ tricks.author }}
+    	</br>
+    	{{ tricks.text }}
+    	</br>
+    	<a href="{{ path('tricks_view', { 'id' : tricks.id} ) }}">Voir le tricks</a>
+    </li>
+  {% endfor %}
+</ul>

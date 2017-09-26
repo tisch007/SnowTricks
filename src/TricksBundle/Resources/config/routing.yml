@@ -1,0 +1,25 @@
+# src/TricksBundle/Resources/config/routing.yml
+
+tricks_homepage:
+    path:     /
+    defaults: { _controller: TricksBundle:Tricks:index }
+
+tricks_homepage:
+    path:     tricks
+    defaults: { _controller: TricksBundle:Tricks:index }
+
+tricks_view:
+    path:      tricks/{id}
+    defaults: { _controller: TricksBundle:Tricks:view }
+
+tricks_add:
+    path:      tricks/add/{id}
+    defaults: { _controller: TricksBundle:Tricks:add }
+
+tricks_update:
+    path:      tricks/update/{id}
+    defaults: { _controller: TricksBundle:Tricks:edit }
+
+tricks_delate:
+    path:      tricks/delete/{id}
+    defaults: { _controller: TricksBundle:Tricks:delete }

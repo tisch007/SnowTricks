@@ -1,0 +1,4 @@
+tricks:
+    resource: "@TricksBundle/Resources/config/routing.yml"
+    prefix:   /
+
