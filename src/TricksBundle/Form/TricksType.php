@@ -14,7 +14,7 @@ class TricksType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('title')->add('content')->add('author')->add('dateAjout')->add('save',SubmitType::class);;
+        $builder->add('title')->add('content')->add('author')->add('dateAjout')->add('save',SubmitType::class);
     }
     
     /**

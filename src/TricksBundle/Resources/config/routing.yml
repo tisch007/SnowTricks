@@ -2,24 +2,24 @@
 
 tricks_homepage:
     path:     /
-    defaults: { _controller: TricksBundle:IndexTricks:index }
+    defaults: { _controller: TricksBundle:Tricks:index }
 
 tricks_homepage:
     path:     tricks
-    defaults: { _controller: TricksBundle:IndexTricks:index }
+    defaults: { _controller: TricksBundle:Tricks:index }
 
 tricks_add:
     path:     tricks/add
-    defaults: { _controller: TricksBundle:AddTricks:add }
+    defaults: { _controller: TricksBundle:Tricks:add }
 
 tricks_edit:
     path:     tricks/edit/{id}
-    defaults: { _controller: TricksBundle:EditTricks:edit }
+    defaults: { _controller: TricksBundle:Tricks:edit }
 
 tricks_delete:
     path:     tricks/delete/{id}
-    defaults: { _controller: TricksBundle:DeleteTricks:delete }
+    defaults: { _controller: TricksBundle:Tricks:delete }
 
 tricks_view:
     path:      tricks/{id}
-    defaults: { _controller: TricksBundle:ViewTricks:view }
+    defaults: { _controller: TricksBundle:Tricks:view }
