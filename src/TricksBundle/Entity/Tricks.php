@@ -54,7 +54,6 @@ class Tricks
      * @var string
      *
      * @ORM\Column(name="dateAjout", type="datetime")
-     * @Assert\DateTime()
      */
     private $dateAjout;
 

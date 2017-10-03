@@ -8,18 +8,18 @@ tricks_homepage:
     path:     tricks
     defaults: { _controller: TricksBundle:IndexTricks:index }
 
-tricks_view:
-    path:      tricks/{id}
-    defaults: { _controller: TricksBundle:ViewTricks:view }
-
 tricks_add:
-    path:     /add
+    path:     tricks/add
     defaults: { _controller: TricksBundle:AddTricks:add }
 
 tricks_edit:
-    path:     /edit/{id}
+    path:     tricks/edit/{id}
     defaults: { _controller: TricksBundle:EditTricks:edit }
 
 tricks_delete:
-    path:     /delete/{id}
+    path:     tricks/delete/{id}
     defaults: { _controller: TricksBundle:DeleteTricks:delete }
+
+tricks_view:
+    path:      tricks/{id}
+    defaults: { _controller: TricksBundle:ViewTricks:view }
