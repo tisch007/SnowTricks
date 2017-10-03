@@ -6,6 +6,7 @@
  * Time: 14:58
  */
 
+
 namespace TricksBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
