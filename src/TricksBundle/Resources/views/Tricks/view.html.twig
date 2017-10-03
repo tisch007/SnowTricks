@@ -1,12 +1,20 @@
-view one
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+    <h1>view one</h1>
 
 
 
 </br>
-    {{ oneTricks.titre }}
+    Titre : {{ oneTricks.title }}
 </br>
     Rédigé par : {{ oneTricks.author }}
 </br>
-    {{ oneTricks.text }}
+    Content : {{ oneTricks.content }}
 </br>
-<a href="{{ path('tricks_homepage') }}">Retour</a>
+<a href="{{ path('tricks_homepage') }}" class="btn btn-default" ><i class="glyphicon glyphicon-chevron-left"></i>Retour</a>
+<a href="{{ path('tricks_edit', { 'id' : oneTricks.id} ) }}" class="btn btn-primary" >Modifier</a>
+<a href="{{ path('tricks_delete', { 'id' : oneTricks.id} ) }}" class="btn btn-danger" >Supprimer</a>
+
+{% endblock %}

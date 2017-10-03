@@ -1,0 +1,27 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    </br>
+    </br>
+    </br>
+    </br>
+    </br>
+    </br>
+    </br>
+    </br>
+    </br>
+<h1>Delete</h1>
+
+    Etes-vous certain de vouloir supprimer l'annonce "{{ trick.title }}" ?
+
+    <form action="{{ path('tricks_delete', {'id': trick.id}) }}" method="post">
+        <a href="{{ path('tricks_view', {'id': trick.id}) }}" class="btn btn-default">
+            <i class="glyphicon glyphicon-chevron-left"></i>
+            Retour au Trick
+        </a>
+        {# Ici j'ai écrit le bouton de soumission à la main #}
+        <input type="submit" value="Supprimer" class="btn btn-danger" />
+        {# Ceci va générer le champ CSRF #}
+        {{ form_rest(form) }}
+    </form>
+{% endblock %}

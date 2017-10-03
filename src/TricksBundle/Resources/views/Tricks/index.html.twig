@@ -1,15 +1,23 @@
-view all
+{% extends "base.html.twig" %}
 
-<ul>
-  {% for tricks in listTricks %}
-    <li>
-    	{{ tricks.titre }}
-    	</br>
-    	Rédigé par : {{ tricks.author }}
-    	</br>
-    	{{ tricks.text }}
-    	</br>
-    	<a href="{{ path('tricks_view', { 'id' : tricks.id} ) }}">Voir le tricks</a>
-    </li>
-  {% endfor %}
-</ul>
+{% block body %}
+<div class="container">
+    <div class="row">
+       <h1>view all</h1>
+
+        <ul>
+          {% for tricks in listTricks %}
+            <li>
+            	{{ tricks.title }}
+            	</br>
+            	Rédigé par : {{ tricks.author }}
+            	</br>
+            	{{ tricks.content }}
+            	</br>
+            	<a href="{{ path('tricks_view', { 'id' : tricks.id} ) }}" class="btn btn-primary">Voir le tricks</a>
+            </li>
+          {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %}

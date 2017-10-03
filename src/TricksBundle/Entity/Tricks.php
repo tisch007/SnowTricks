@@ -3,12 +3,18 @@
 namespace TricksBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Tricks
  *
  * @ORM\Table(name="tricks")
  * @ORM\Entity(repositoryClass="TricksBundle\Repository\TricksRepository")
+ * @UniqueEntity(
+ *      fields={"title"},
+ *      message="Ce Trick existe déjà."
+ * )
  */
 class Tricks
 {
@@ -24,21 +30,23 @@ class Tricks
     /**
      * @var string
      *
-     * @ORM\Column(name="titre", type="string", length=255, unique=true)
+     * @ORM\Column(name="title", type="string", length=255, unique=true)
      */
-    private $titre;
+    private $title;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="text", type="string", length=21000)
+     * @ORM\Column(name="content", type="string", length=255)
+     * @Assert\NotBlank()
      */
-    private $text;
+    private $content;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="author", type="string", length=255)
+     * @ORM\Column(name="author", type="string")
+     * @Assert\NotBlank()
      */
     private $author;
 
@@ -46,6 +54,7 @@ class Tricks
      * @var string
      *
      * @ORM\Column(name="dateAjout", type="datetime")
+     * @Assert\DateTime()
      */
     private $dateAjout;
 
@@ -61,51 +70,51 @@ class Tricks
     }
 
     /**
-     * Set titre
+     * Set title
      *
-     * @param string $titre
+     * @param string $title
      *
      * @return Tricks
      */
-    public function setTitre($titre)
+    public function setTitle($title)
     {
-        $this->titre = $titre;
+        $this->title = $title;
 
         return $this;
     }
 
     /**
-     * Get titre
+     * Get title
      *
      * @return string
      */
-    public function getTitre()
+    public function getTitle()
     {
-        return $this->titre;
+        return $this->title;
     }
 
     /**
-     * Set text
+     * Set content
      *
-     * @param string $text
+     * @param string $content
      *
      * @return Tricks
      */
-    public function setText($text)
+    public function setContent($content)
     {
-        $this->text = $text;
+        $this->content = $content;
 
         return $this;
     }
 
     /**
-     * Get text
+     * Get content
      *
      * @return string
      */
-    public function getText()
+    public function getContent()
     {
-        return $this->text;
+        return $this->content;
     }
 
     /**
