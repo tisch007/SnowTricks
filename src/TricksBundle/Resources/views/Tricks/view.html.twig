@@ -13,6 +13,9 @@
 </br>
     Content : {{ oneTricks.content }}
 </br>
+    Catégorie : {{ oneTricks.category.name }}
+</br>
+
 <a href="{{ path('tricks_homepage') }}" class="btn btn-default" ><i class="glyphicon glyphicon-chevron-left"></i>Retour</a>
 <a href="{{ path('tricks_edit', { 'id' : oneTricks.id} ) }}" class="btn btn-primary" >Modifier</a>
 <a href="{{ path('tricks_delete', { 'id' : oneTricks.id} ) }}" class="btn btn-danger" >Supprimer</a>

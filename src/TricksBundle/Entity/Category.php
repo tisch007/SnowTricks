@@ -3,12 +3,17 @@
 namespace TricksBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 /**
  * category
  *
  * @ORM\Table(name="Category")
  * @ORM\Entity(repositoryClass="TricksBundle\Repository\CategoryRepository")
+ *  @UniqueEntity(
+ *      fields={"name"},
+ *      message="Cette Catégorie existe déjà."
+ * )
  */
 class Category
 {
@@ -29,17 +34,10 @@ class Category
     private $name;
 
     /**
-     * @var array
-     *
-     * @ORM\Column(name="tricks", type="array")
-     */
-    private $tricks;
-
-
-    /**
      * Get id
      *
      * @return int
+     * @Assert\NotBlank()
      */
     public function getId()
     {
@@ -68,30 +66,6 @@ class Category
     public function getName()
     {
         return $this->name;
-    }
-
-    /**
-     * Set tricks
-     *
-     * @param array $tricks
-     *
-     * @return category
-     */
-    public function setTricks($tricks)
-    {
-        $this->tricks = $tricks;
-
-        return $this;
-    }
-
-    /**
-     * Get tricks
-     *
-     * @return array
-     */
-    public function getTricks()
-    {
-        return $this->tricks;
     }
 }
 

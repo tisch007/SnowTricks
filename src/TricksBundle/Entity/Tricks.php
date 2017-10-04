@@ -37,7 +37,7 @@ class Tricks
     /**
      * @var string
      *
-     * @ORM\Column(name="content", type="string", length=255)
+     * @ORM\Column(name="content", type="text")
      * @Assert\NotBlank()
      */
     private $content;
@@ -56,6 +56,12 @@ class Tricks
      * @ORM\Column(name="dateAjout", type="datetime")
      */
     private $dateAjout;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="TricksBundle\Entity\Category")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $category;
 
 
     /**
@@ -138,6 +144,30 @@ class Tricks
     public function getAuthor()
     {
         return $this->author;
+    }
+
+    /**
+     * Set Category
+     *
+     * @param category $category
+     *
+     * @return Tricks
+     */
+    public function setCategory(Category $category)
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * Get Category
+     *
+     * @return Category
+     */
+    public function getCategory()
+    {
+        return $this->category;
     }
 
     /**
