@@ -8,6 +8,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 
 class TricksType extends AbstractType
@@ -21,7 +22,11 @@ class TricksType extends AbstractType
             ->add('title',  TextType::class)
             ->add('content',TextareaType::class)
             ->add('author', TextType::class)
-            ->add('Envoyer',SubmitType::class);
+            ->add('category', EntityType::class, array(
+                'class' => 'TricksBundle\Entity\Category',
+                'choice_label' => 'name',
+            ))
+            ->add('save',SubmitType::class);
     }
     
     /**
