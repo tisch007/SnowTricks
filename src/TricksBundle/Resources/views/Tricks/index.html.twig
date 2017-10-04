@@ -10,7 +10,7 @@
             <li>
             	{{ tricks.title }}
             	</br>
-            	Rédigé par : {{ tricks.author }}
+                Rédigé par : {{ tricks.author }} le : {{ tricks.dateAjout|date('d/m/Y à H:i') }}
             	</br>
             	{{ tricks.content }}
             	</br>

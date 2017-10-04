@@ -10,6 +10,7 @@
 namespace TricksBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Validator\Constraints\DateTime;
 use TricksBundle\Entity\Tricks;
 use TricksBundle\Form\TricksType;
 use Symfony\Component\HttpFoundation\Request;
@@ -36,6 +37,7 @@ class TricksController extends Controller
     public function addAction(Request $request)
     {
         $trick = new tricks();
+        $trick->setDateAjout(new \DateTime());
         $formBuilder = $this->get('form.factory')->createBuilder(TricksType::class, $trick);
         $form = $formBuilder->getForm();
 

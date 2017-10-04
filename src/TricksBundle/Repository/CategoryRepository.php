@@ -1,7 +1,5 @@
 <?php
-
 namespace TricksBundle\Repository;
-
 /**
  * CategoryRepository
  *
