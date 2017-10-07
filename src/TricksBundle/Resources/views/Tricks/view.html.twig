@@ -20,4 +20,17 @@
 <a href="{{ path('tricks_edit', { 'id' : oneTricks.id} ) }}" class="btn btn-primary" >Modifier</a>
 <a href="{{ path('tricks_delete', { 'id' : oneTricks.id} ) }}" class="btn btn-danger" >Supprimer</a>
 
+<h2>Commentaire</h2>
+    {% include 'TricksBundle:form:commentForm.html.twig' %}
+</br>
+<ul>
+    {% for comment in listComment %}
+        <li>
+            Rédigé par : {{ comment.author }} le : {{ comment.dateAjout|date('d/m/Y à H:i') }}
+            </br>
+            {{ comment.content }}
+        </li>
+    {% endfor %}
+</ul>
+
 {% endblock %}

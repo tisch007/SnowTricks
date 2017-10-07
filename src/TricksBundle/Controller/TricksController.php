@@ -12,7 +12,9 @@ namespace TricksBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Validator\Constraints\DateTime;
 use TricksBundle\Entity\Tricks;
+use TricksBundle\Entity\Comment;
 use TricksBundle\Form\TricksType;
+use TricksBundle\Form\CommentType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -31,7 +33,13 @@ class TricksController extends Controller
     {
         $repository = $this->getDoctrine()->getManager()->getRepository('TricksBundle:Tricks');
         $oneTricks = $repository->Find($id);
-        return $this->render('TricksBundle:Tricks:view.html.twig', array('oneTricks' => $oneTricks));
+        $repository = $this->getDoctrine()->getManager()->getRepository('TricksBundle:Comment');
+        $listComment = $repository->findByTricks($id);
+        $comment = new comment();
+        $comment->setDateAjout(new \DateTime());
+        $formBuilder = $this->get('form.factory')->createBuilder(CommentType::class, $comment);
+        $form = $formBuilder->getForm();
+        return $this->render('TricksBundle:Tricks:view.html.twig', array('oneTricks' => $oneTricks, 'listComment' => $listComment, 'form' => $form->createView() ));
     }
 
     public function addAction(Request $request)
