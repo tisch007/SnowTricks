@@ -3,13 +3,11 @@
 namespace TricksBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
-class CommentType extends AbstractType
+class ImageType extends AbstractType
 {
     /**
      * {@inheritdoc}
@@ -17,9 +15,8 @@ class CommentType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('author',TextType::class)
-            ->add('content', TextareaType::class)
-            ->add('save',SubmitType::class);
+            ->add('file', FileType::class)
+        ;
     }
     
     /**
@@ -28,7 +25,7 @@ class CommentType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'TricksBundle\Entity\Comment'
+            'data_class' => 'TricksBundle\Entity\Image'
         ));
     }
 
@@ -37,7 +34,7 @@ class CommentType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'tricksbundle_comment';
+        return 'tricksbundle_image';
     }
 
 

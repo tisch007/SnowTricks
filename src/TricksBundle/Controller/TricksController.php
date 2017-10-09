@@ -10,7 +10,6 @@
 namespace TricksBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\Validator\Constraints\DateTime;
 use TricksBundle\Entity\Tricks;
 use TricksBundle\Entity\Comment;
 use TricksBundle\Form\TricksType;
@@ -29,27 +28,38 @@ class TricksController extends Controller
         return $this->render('TricksBundle:Tricks:index.html.twig', array('listTricks' => $listTricks));
     }
 
-    public function viewAction($id)
+    public function viewAction($id, Request $request)
     {
         $repository = $this->getDoctrine()->getManager()->getRepository('TricksBundle:Tricks');
         $oneTricks = $repository->Find($id);
+        if (null === $oneTricks) {
+            throw new NotFoundHttpException("Le trick d'id ".$id." n'existe pas.");
+        }
         $repository = $this->getDoctrine()->getManager()->getRepository('TricksBundle:Comment');
         $listComment = $repository->findByTricks($id);
         $comment = new comment();
-        $comment->setDateAjout(new \DateTime());
         $formBuilder = $this->get('form.factory')->createBuilder(CommentType::class, $comment);
         $form = $formBuilder->getForm();
+        if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+            $comment->setDateAjout(new \DateTime());
+            $comment->setTricks($oneTricks);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($comment);
+            $em->flush();
+            $request->getSession()->getFlashBag()->add('notice', 'Trick bien enregistrée.');
+            return $this->redirectToRoute('tricks_view', array('id' => $oneTricks->getId()));
+        }
         return $this->render('TricksBundle:Tricks:view.html.twig', array('oneTricks' => $oneTricks, 'listComment' => $listComment, 'form' => $form->createView() ));
     }
 
     public function addAction(Request $request)
     {
         $trick = new tricks();
-        $trick->setDateAjout(new \DateTime());
         $formBuilder = $this->get('form.factory')->createBuilder(TricksType::class, $trick);
         $form = $formBuilder->getForm();
 
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+            $trick->setDateAjout(new \DateTime());
             $em = $this->getDoctrine()->getManager();
             $em->persist($trick);
             $em->flush();

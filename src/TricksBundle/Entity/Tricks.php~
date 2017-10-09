@@ -69,7 +69,7 @@ class Tricks
     private $video;
 
     /**
-     * @ORM\OneToOne(targetEntity="TricksBundle\Entity\Image", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity="TricksBundle\\Entity\Image", cascade={"persist", "remove"})
      */
     private $image;
 
@@ -242,29 +242,5 @@ class Tricks
     public function getVideo()
     {
         return $this->video;
-    }
-
-    /**
-     * Set image
-     *
-     * @param \TricksBundle\\Entity\Image $image
-     *
-     * @return Tricks
-     */
-    public function setImage(\TricksBundle\Entity\Image $image = null)
-    {
-        $this->image = $image;
-
-        return $this;
-    }
-
-    /**
-     * Get image
-     *
-     * @return \TricksBundle\\Entity\Image
-     */
-    public function getImage()
-    {
-        return $this->image;
     }
 }
