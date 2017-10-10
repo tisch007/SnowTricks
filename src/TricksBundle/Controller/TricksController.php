@@ -110,7 +110,7 @@ class TricksController extends Controller
             return $this->redirectToRoute('tricks_view', array('id' => $trick->getId()));
         }
 
-        return $this->render('TricksBundle:Tricks:edit.html.twig', array('form' => $form->createView()));
+        return $this->render('TricksBundle:Tricks:edit.html.twig', array('formTrick' => $form->createView()));
     }
 
     public function deleteAction($id, Request $request)
