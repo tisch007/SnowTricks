@@ -26,16 +26,15 @@ class Video
      * @var string
      *
      * @ORM\Column(name="link", type="string", length=255)
+     * @Assert\NotBlank()
      */
     private $link;
 
     /**
      * @ORM\ManyToOne(targetEntity="TricksBundle\Entity\Tricks", cascade={"remove"})
      * @ORM\JoinColumn(nullable=false)
-     * @Assert\NotBlank()
      */
     private $tricks;
-
     /**
      * Get id
      *

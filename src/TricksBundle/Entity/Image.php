@@ -36,6 +36,12 @@ class Image
      */
     private $alt;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="TricksBundle\Entity\Tricks", cascade={"remove"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $tricks;
+
 
     /**
      * @var UploadedFile

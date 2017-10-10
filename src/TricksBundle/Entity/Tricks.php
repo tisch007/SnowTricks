@@ -64,16 +64,6 @@ class Tricks
     private $category;
 
     /**
-     * @ORM\OneToMany(targetEntity="TricksBundle\Entity\Video", mappedBy="trick", cascade={"persist", "remove"})
-     */
-    private $video;
-
-    /**
-     * @ORM\OneToOne(targetEntity="TricksBundle\Entity\Image", cascade={"persist", "remove"})
-     */
-    private $image;
-
-    /**
      * Get id
      *
      * @return int
@@ -201,70 +191,5 @@ class Tricks
     public function getDateAjout()
     {
         return $this->dateAjout;
-    }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->video = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-     * Add video
-     *
-     * @param \TricksBundle\Entity\Video $video
-     *
-     * @return Tricks
-     */
-    public function addVideo(\TricksBundle\Entity\Video $video)
-    {
-        $this->video[] = $video;
-
-        return $this;
-    }
-
-    /**
-     * Remove video
-     *
-     * @param \TricksBundle\Entity\Video $video
-     */
-    public function removeVideo(\TricksBundle\Entity\Video $video)
-    {
-        $this->video->removeElement($video);
-    }
-
-    /**
-     * Get video
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getVideo()
-    {
-        return $this->video;
-    }
-
-    /**
-     * Set image
-     *
-     * @param \TricksBundle\\Entity\Image $image
-     *
-     * @return Tricks
-     */
-    public function setImage(\TricksBundle\Entity\Image $image = null)
-    {
-        $this->image = $image;
-
-        return $this;
-    }
-
-    /**
-     * Get image
-     *
-     * @return \TricksBundle\\Entity\Image
-     */
-    public function getImage()
-    {
-        return $this->image;
     }
 }

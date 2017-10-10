@@ -31,7 +31,7 @@ class TricksType extends AbstractType
                 'by_reference'  =>  false,
                 'label'         =>  "Vidéos Youtube",
             ))*/
-           ->add('image',ImageType::class)
+          // ->add('image',ImageType::class)
             ->add('save',SubmitType::class);
     }
     
