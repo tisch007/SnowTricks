@@ -3,6 +3,7 @@
 namespace TricksBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Video
@@ -25,6 +26,15 @@ class Video
      * @var string
      *
      * @ORM\Column(name="link", type="string", length=255)
+     * @Assert\NotBlank()
+     */
+    private $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255)
+     * @Assert\NotBlank()
      */
     private $link;
 
@@ -33,7 +43,6 @@ class Video
      * @ORM\JoinColumn(nullable=false)
      */
     private $tricks;
-
     /**
      * Get id
      *
@@ -67,5 +76,28 @@ class Video
     {
         return $this->link;
     }
-}
 
+    /**
+     * Set tricks
+     *
+     * @param \TricksBundle\Entity\Tricks $tricks
+     *
+     * @return Video
+     */
+    public function setTricks(\TricksBundle\Entity\Tricks $tricks)
+    {
+        $this->tricks = $tricks;
+
+        return $this;
+    }
+
+    /**
+     * Get tricks
+     *
+     * @return \TricksBundle\Entity\Tricks
+     */
+    public function getTricks()
+    {
+        return $this->tricks;
+    }
+}

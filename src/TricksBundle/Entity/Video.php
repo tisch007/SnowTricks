@@ -25,6 +25,14 @@ class Video
     /**
      * @var string
      *
+     * @ORM\Column(name="name", type="string", length=255)
+     * @Assert\NotBlank()
+     */
+    private $name;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="link", type="string", length=255)
      * @Assert\NotBlank()
      */
@@ -91,5 +99,29 @@ class Video
     public function getTricks()
     {
         return $this->tricks;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return Video
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
     }
 }
