@@ -15,8 +15,30 @@
 </br>
     Catégorie : {{ oneTricks.category.name }}
 </br>
-    
+
 <h2>Video</h2>
+    <!-- Start WOWSlider.com BODY section --> <!-- add to the <body> of your page -->
+    <div id="wowslider-container1">
+        <div class="ws_images"><ul>
+                <li><iframe width="100%" height="100%" src="https://www.youtube.com/embed/SQyTWk7OxSI?autoplay=0&rel=0&enablejsapi=1&playerapiid=ytplayer&wmode=transparent" frameborder="0" allowfullscreen></iframe><img src="{{ asset('img/data1/images/sqytwk7oxsi.png') }}" alt="10 Snowboard Tricks to Learn First" title="10 Snowboard Tricks to Learn First" id="wows1_0"/></li>
+                <li><iframe width="100%" height="100%" src="https://www.youtube.com/embed/G9qlTInKbNE?autoplay=0&rel=0&enablejsapi=1&playerapiid=ytplayer&wmode=transparent" frameborder="0" allowfullscreen></iframe><img src="{{ asset('img/data1/images/g9qltinkbne.png') }}" alt="10 Snowboard Butter Tricks to Learn First" title="10 Snowboard Butter Tricks to Learn First" id="wows1_1"/></li>
+                <li><iframe width="100%" height="100%" src="https://www.youtube.com/embed/FKeUVMMl0fc?autoplay=0&rel=0&enablejsapi=1&playerapiid=ytplayer&wmode=transparent" frameborder="0" allowfullscreen></iframe><img src="{{ asset('img/data1/images/fkeuvmml0fc.png') }}" alt="The Eternal Beauty Of Snowboarding" title="The Eternal Beauty Of Snowboarding" id="wows1_2"/></li>
+                <li><a href="http://wowslider.net"><img src="{{ asset('img/data1/images/1200pxsnowboarding_pictogram.svg.png') }}" alt="javascript slider" title="1200px-Snowboarding_pictogram.svg" id="wows1_3"/></a></li>
+                <li><img src="{{ asset('img/data1/images/background.jpg') }}" alt="background" title="background" id="wows1_4"/></li>
+            </ul></div>
+        <div class="ws_bullets"><div>
+                <a href="#" title="10 Snowboard Tricks to Learn First"><span><img src="{{ asset('img/data1/tooltips/sqytwk7oxsi.png') }}" alt="10 Snowboard Tricks to Learn First"/>1</span></a>
+                <a href="#" title="10 Snowboard Butter Tricks to Learn First"><span><img src="{{ asset('img/data1/tooltips/g9qltinkbne.png') }}" alt="10 Snowboard Butter Tricks to Learn First"/>2</span></a>
+                <a href="#" title="The Eternal Beauty Of Snowboarding"><span><img src="{{ asset('img/data1/tooltips/fkeuvmml0fc.png') }}" alt="The Eternal Beauty Of Snowboarding"/>3</span></a>
+                <a href="#" title="1200px-Snowboarding_pictogram.svg"><span><img src="{{ asset('img/data1/tooltips/1200pxsnowboarding_pictogram.svg.png') }}" alt="1200px-Snowboarding_pictogram.svg"/>4</span></a>
+                <a href="#" title="background"><span><img src="{{ asset('img/data1/tooltips/background.jpg') }}" alt="background"/>5</span></a>
+            </div></div><div class="ws_script" style="position:absolute;left:-99%"><a href="http://wowslider.net">jquery image carousel</a> by WOWSlider.com v8.8</div>
+        <div class="ws_shadow"></div>
+    </div>
+    <script type="text/javascript" src="{{ asset('js/engine1/wowslider.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/engine1/script.js') }}"></script>
+    <!-- End WOWSlider.com BODY section -->
+    {#
     <ul>
         {% for video in listVideo %}
             <li>
@@ -36,6 +58,7 @@
                 // 3. This function creates an <iframe> (and YouTube player)
                 //    after the API code downloads.
                 var player;
+                var player2;
                 function onYouTubeIframeAPIReady() {
                     player = new YT.Player('player', {
                         height: '360',
@@ -46,7 +69,7 @@
          </script>
      {% endfor %}
  </ul>
-
+#}
 <br>
 <a href="{{ path('tricks_homepage') }}" class="btn btn-default" ><i class="glyphicon glyphicon-chevron-left"></i>Retour</a>
 <a href="{{ path('tricks_edit', { 'id' : oneTricks.id} ) }}" class="btn btn-primary" >Modifier</a>
@@ -64,5 +87,4 @@
         </li>
     {% endfor %}
 </ul>
-
 {% endblock %}
