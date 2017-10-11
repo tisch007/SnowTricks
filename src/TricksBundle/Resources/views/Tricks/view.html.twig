@@ -26,12 +26,10 @@
                     <li><iframe width="100%" height="100%" src="https://www.youtube.com/embed/{{ video.link }}?autoplay=0&rel=0&enablejsapi=1&playerapiid=ytplayer&wmode=transparent" frameborder="0" allowfullscreen></iframe><img src="http://img.youtube.com/vi/{{ video.link }}/0.jpg" alt="{{ video.name }}" title="{{ video.name }}" id="wows1_{{ i }}"/></li>
                     {% set i = i+1 %}
                 {% endfor %}
-                {#
                 {% for image in listImage %}
-                    <li><img src="{{ asset('{{ image.url }}') }}" alt="{{ image.name }}" title="{{ image.name }}" id="wows1_{{ i }}"/></li>
+                    <li><img src="{{ asset('img/{{ image.url }}') }}" alt="{{ image.name }}" title="{{ image.name }}" id="wows1_{{ i }}"/></li>
                     {% set i = i+1 %}
                 {% endfor %}
-                #}
 
                 <div class="ws_bullets">
                     <div>
@@ -40,11 +38,12 @@
                             <a href="#" title="{{ video.name }}"><span>{{ i }}</span></a>
                             {% set i = i+1 %}
                         {% endfor %}
-                        {#
                         {% for image in listImage %}
                             <a href="#" title="{{ image.name }}"><span>{{ i }}</span></a>
                             {% set i = i+1 %}
-                        {% endfor %} #}
+                        {% endfor %}
+                    </div>
+                </div>
             </ul>
         </div>
     </div>

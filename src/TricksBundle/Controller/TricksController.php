@@ -43,6 +43,10 @@ class TricksController extends Controller
         $repository = $this->getDoctrine()->getManager()->getRepository('TricksBundle:Video');
         $listVideo = $repository->findByTricks($id);
 
+        //image
+        $repository = $this->getDoctrine()->getManager()->getRepository('TricksBundle:Image');
+        $listImage = $repository->findByTricks($id);
+
         //Commentaire
         $repository = $this->getDoctrine()->getManager()->getRepository('TricksBundle:Comment');
         $listComment = $repository->findByTricks($id);
@@ -50,6 +54,7 @@ class TricksController extends Controller
         $formBuilder = $this->get('form.factory')->createBuilder(CommentType::class, $comment);
         $formComment = $formBuilder->getForm();
 
+        //Enregistrement commentaire
         if ($request->isMethod('POST') && $formComment->handleRequest($request)->isValid()) {
             $comment->setDateAjout(new \DateTime());
             $comment->setTricks($oneTricks);
@@ -59,11 +64,15 @@ class TricksController extends Controller
             $request->getSession()->getFlashBag()->add('notice', 'Trick bien enregistrée.');
             return $this->redirectToRoute('tricks_view', array('id' => $oneTricks->getId()));
         }
+
+        //Vue
         return $this->render('TricksBundle:Tricks:view.html.twig', array(
             'oneTricks' => $oneTricks,
             'listComment' => $listComment,
             'formComment' => $formComment->createView(),
-            'listVideo' => $listVideo ));
+            'listVideo' => $listVideo,
+            'listImage' => $listImage
+        ));
     }
 
     public function addAction(Request $request)
