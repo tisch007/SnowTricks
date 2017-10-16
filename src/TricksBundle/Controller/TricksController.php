@@ -17,6 +17,7 @@ use TricksBundle\Entity\Image;
 use TricksBundle\Form\TricksType;
 use TricksBundle\Form\CommentType;
 use TricksBundle\Form\VideoType;
+use TricksBundle\Form\ImageType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -87,6 +88,10 @@ class TricksController extends Controller
         $formBuilder = $this->get('form.factory')->createBuilder(VideoType::class, $video);
         $formVideo = $formBuilder->getForm();
 
+        //image
+        $image = new image();
+        $formBuilder = $this->get('form.factory')->createBuilder(ImageType::class, $image);
+        $formImage = $formBuilder->getForm();
 
         if ($request->isMethod('POST') && $formTrick->handleRequest($request)->isValid()) {
             $trick->setDateAjout(new \DateTime());
@@ -98,7 +103,8 @@ class TricksController extends Controller
         }
         return $this->render('TricksBundle:Tricks:add.html.twig', array(
             'formTrick' => $formTrick->createView(),
-            'formVideo' => $formVideo->createView()
+            'formVideo' => $formVideo->createView(),
+            'formImage' => $formImage->createView()
         ));
     }
 

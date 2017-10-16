@@ -9,8 +9,6 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
-
 class TricksType extends AbstractType
 {
     /**
@@ -24,14 +22,6 @@ class TricksType extends AbstractType
             ->add('author', TextType::class)
             ->add('category', EntityType::class, array(
                 'class' => 'TricksBundle\Entity\Category', 'choice_label' => 'name'))
-           /* ->add('video',  CollectionType::class, array(
-                'entry_type'    =>  VideoType::class,
-                'allow_add'     =>  true,
-                'allow_delete'  =>  true,
-                'by_reference'  =>  false,
-                'label'         =>  "Vidéos Youtube",
-            ))*/
-          // ->add('image',ImageType::class)
             ->add('save',SubmitType::class);
     }
     

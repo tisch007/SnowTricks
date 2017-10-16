@@ -12,6 +12,18 @@
     </br>
     <h1>Add</h1>
     {% include 'TricksBundle:form:addTricksForm.html.twig' %}
-    <h2>Ajouter une video</h2>
-    {% include 'TricksBundle:form:videoForm.html.twig' %}
+    <button id="add" class="btn btn-primary">Ajouter des videos ou des images</button>
+    <div id = 'hide'>
+        <h2>Ajouter une video</h2>
+        {% include 'TricksBundle:form:videoForm.html.twig' %}
+        <h2>Ajouter une image</h2>
+        {% include 'TricksBundle:form:imageForm.html.twig' %}
+    </div>
+    <script>
+        $('#hide').hide();
+        $('#add').on('click', function() {
+            $('#hide').show('slow');
+            $('#add').hide('slow');
+        });
+    </script>
 {% endblock %}
