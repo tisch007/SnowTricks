@@ -3,7 +3,6 @@
 namespace TricksBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -17,17 +16,13 @@ class ImageType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-/*
         $builder
-            ->add('imageFile', FileType::class, array('required'=> false, 'label' => 'Ficher'))
-            ->add('imageName',TextType::class, array('label' => 'nom de la photo'))
-            ->add('save',SubmitType::class, array('label' => 'Enregistrer'))
-        ;*/
-        $builder
+            ->add('imageName',textType::class, array('label' => 'Nom de  l\'image'))
             ->add('imageFile', VichImageType::class, [
                 'label'         =>  false,
                 'allow_delete'  => false,
             ])
+            ->add('save',SubmitType::class, array('label' => 'Enregistrer'))
         ;
     }
     

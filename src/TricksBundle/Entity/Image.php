@@ -46,11 +46,7 @@ class Image
      */
     private $updatedAt;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="TricksBundle\Entity\Tricks", inversedBy="images")
-     * @ORM\JoinColumn(name="tricks_id", referencedColumnName="id", nullable=false)
-     */
-    private $tricks;
+
 
     /**
      * If manually uploading a file (i.e. not using Symfony Form) ensure an instance

@@ -5,7 +5,6 @@ namespace TricksBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
-use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Tricks
  *
@@ -63,15 +62,6 @@ class Tricks
      */
     private $category;
 
-    /**
-     * @ORM\OneToMany(targetEntity="TricksBundle\Entity\Image", mappedBy="tricks", cascade={"persist", "remove"})
-     */
-    private $images;
-
-    public function __construct()
-    {
-        $this->images = new ArrayCollection();
-    }
 
     /**
      * Get id
@@ -201,25 +191,5 @@ class Tricks
     public function getDateAjout()
     {
         return $this->dateAjout;
-    }
-
-    public function addImage(Image $image)
-    {
-        //On lie la figure à l'image
-        $image->setTricks($this);
-
-        $this->images->add($image);
-
-        return $this;
-    }
-
-    public function removeImage(Image $image)
-    {
-        $this->images->removeElement($image);
-    }
-
-    public function getImages()
-    {
-        return $this->images;
     }
 }

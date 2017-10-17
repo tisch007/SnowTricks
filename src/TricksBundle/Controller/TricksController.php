@@ -84,11 +84,11 @@ class TricksController extends Controller
         $video = new video();
         $formBuilder = $this->get('form.factory')->createBuilder(VideoType::class, $video);
         $formVideo = $formBuilder->getForm();
-
+*/
         //image
         $image = new image();
         $formBuilder = $this->get('form.factory')->createBuilder(ImageType::class, $image);
-        $formImage = $formBuilder->getForm();*/
+        $formImage = $formBuilder->getForm();
 
         if ($request->isMethod('POST') && $formTrick->handleRequest($request)->isValid()) {
             $trick->setDateAjout(new \DateTime());
@@ -96,22 +96,31 @@ class TricksController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($trick);
             $em->flush();
+
+            if ($request->isMethod('POST') && $formImage->handleRequest($request)->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($image);
+                $em->flush();
+                $request->getSession()->getFlashBag()->add('notice', 'Image bien enregistrée.');
+            }
+
             $request->getSession()->getFlashBag()->add('notice', 'Trick bien enregistrée.');
             return $this->redirectToRoute('tricks_view', array('id' => $trick->getId()));
         }
-/*
+
         if ($request->isMethod('POST') && $formImage->handleRequest($request)->isValid()) {
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($image);
             $em->flush();
             $request->getSession()->getFlashBag()->add('notice', 'Image bien enregistrée.');
 
             return $this->redirectToRoute('tricks_homepage');
-        }*/
+        }
         return $this->render('TricksBundle:Tricks:add.html.twig', array(
-            'form' => $formTrick->createView()/*,
-            'formVideo' => $formVideo->createView(),
-            'formImage' => $formImage->createView()*/
+            'form' => $formTrick->createView(),/*,
+            'formVideo' => $formVideo->createView(),*/
+            'formImage' => $formImage->createView()
         ));
     }
 

@@ -49,24 +49,29 @@
                         {{ form_errors(form.category) }}
                     </div>
                 </div>
-                {# Photo form #}
-                {#
-             <div class="form-group">
-                 {{ form_label(form.images, 'Photos', {'label_attr': {'class': 'col-md-3 control-label'}}) }}
-                 <div class="col-md-9">
-                     {{ form_widget(form.images) }}
-                 </div>
-             </div>
 
-             {# Videos form #}
-                {#
                 <div class="form-group">
-                    {{ form_label(form.videos, 'Vidéos', {'label_attr': {'class': 'col-md-3 control-label'}}) }}
+                    {{ form_label(formImage.imageName, 'Nom de l\'image', {'label_attr': {'class': 'col-md-3 control-label'}}) }}
                     <div class="col-md-9">
-                        {{ form_widget(form.videos) }}
+                        {{ form_widget(formImage.imageName, {'attr': {'class': 'form-control', 'placeholder': 'Nom'}}) }}
+                    </div>
+                    <div class="col-md-9 col-md-offset-3">
+                        {{ form_errors(formImage.imageName) }}
+                    </div>
+                    <div class="col-md-9">
+                        {{ form_widget(formImage.imageFile)}}
+                    </div>
+                    <div class="col-md-9 col-md-offset-3">
+                        {{ form_errors(formImage.imageName) }}
                     </div>
                 </div>
-                #}
+
+                <div class="form-group">
+                    <div class="col-md-9 col-md-offset-1">
+                        <button id="addImage" class="btn btn-success">Ajouter des images</button>
+                        <button id="addVideo" class="btn btn-success">Ajouter des videos</button>
+                    </div>
+                </div>
 
                 <div class="form-group">
                     <div class="col-md-9 col-md-offset-3 text-right">
