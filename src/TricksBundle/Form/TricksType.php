@@ -23,13 +23,7 @@ class TricksType extends AbstractType
             ->add('author', TextType::class, array('label' => 'nom de la photo'), array('label' => 'Nom de l\'auteur'))
             ->add('category', EntityType::class, array(
                 'class' => 'TricksBundle\Entity\Category', 'choice_label' => 'name', 'label' => 'catégorie'))
-            ->add('images',         CollectionType::class, array(
-                'entry_type'    =>  ImageType::class,
-                'allow_add'     =>  true,
-                'allow_delete'  =>  true,
-                'by_reference'  =>  false,
-                'label'         =>  false,
-            ));
+        ;
     }
     
     /**
