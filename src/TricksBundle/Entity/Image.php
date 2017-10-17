@@ -46,6 +46,11 @@ class Image
      */
     private $updatedAt;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="TricksBundle\Entity\Tricks", cascade={"remove"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $tricks;
 
 
     /**

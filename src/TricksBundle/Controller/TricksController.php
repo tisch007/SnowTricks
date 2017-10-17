@@ -42,6 +42,7 @@ class TricksController extends Controller
         $listVideo = $repository->findByTricks($id);
 
         //image
+
         $repository = $this->getDoctrine()->getManager()->getRepository('TricksBundle:Image');
         $listImage = $repository->findByTricks($id);
 

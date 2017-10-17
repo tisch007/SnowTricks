@@ -27,7 +27,7 @@
                     {% set i = i+1 %}
                 {% endfor %}
                 {% for image in listImage %}
-                    <li><img src="{{ asset('img/' ~  image.url) }}" alt="{{ image.name }}" title="{{ image.name }}" id="wows1_{{ i }}"/></li>
+                    <li><img src="{{ asset('img/' ~  image.imageName) }}" alt="{{ image.imageName }}" title="{{ image.imageName }}" id="wows1_{{ i }}"/></li>
                     {% set i = i+1 %}
                 {% endfor %}
 
@@ -39,7 +39,7 @@
                             {% set i = i+1 %}
                         {% endfor %}
                         {% for image in listImage %}
-                            <a href="#" title="{{ image.name }}"><span>{{ i }}</span></a>
+                            <a href="#" title="{{ image.imageName }}"><span>{{ i }}</span></a>
                             {% set i = i+1 %}
                         {% endfor %}
                     </div>
