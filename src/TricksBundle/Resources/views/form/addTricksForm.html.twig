@@ -1,3 +1,71 @@
-<div class="well">
-    {{ form(formTrick) }}
+<div class="container">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="well">
+            {{ form_start(form, {'attr': {'novalidate': 'novalidate', 'class': 'form-horizontal'}}) }}
+            {{ form_errors(form) }}
+            <fieldset>
+                {% if trick is defined %}
+                    <legend>Modifier la figure</legend>
+                {% else %}
+                    <legend>Nouvelle figure</legend>
+                {% endif %}
+
+                <div class="form-group">
+                    {{ form_label(form.title, 'Nom de la figure', {'label_attr': {'class': 'col-md-3 control-label'}}) }}
+                    <div class="col-md-9">
+                        {{ form_widget(form.title, {'attr': {'class': 'form-control', 'placeholder': 'Nom'}}) }}
+                    </div>
+                    <div class="col-md-9 col-md-offset-3">
+                        {{ form_errors(form.title) }}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(form.content, 'Description de la figure', {'label_attr': {'class': 'col-md-3 control-label'}}) }}
+                    <div class="col-md-9">
+                        {{ form_widget(form.content, {'attr': {'class': 'form-control', 'rows': '5', 'placeholder': 'Description'}}) }}
+                    </div>
+                    <div class="col-md-9 col-md-offset-3">
+                        {{ form_errors(form.content) }}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(form.category, 'Catégorie de la figure', {'label_attr': {'class': 'col-md-3 control-label'}}) }}
+                    <div class="col-md-9">
+                        {{ form_widget(form.category, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <div class="col-md-9 col-md-offset-3">
+                        {{ form_errors(form.category) }}
+                    </div>
+                </div>
+                {# Photo form #}
+                <div class="form-group">
+                    {{ form_label(form.images, 'Photos', {'label_attr': {'class': 'col-md-3 control-label'}}) }}
+                    <div class="col-md-9">
+                        {{ form_widget(form.images) }}
+                    </div>
+                </div>
+
+                {# Videos form #}
+                {#
+                <div class="form-group">
+                    {{ form_label(form.videos, 'Vidéos', {'label_attr': {'class': 'col-md-3 control-label'}}) }}
+                    <div class="col-md-9">
+                        {{ form_widget(form.videos) }}
+                    </div>
+                </div>
+                #}
+
+                <div class="form-group">
+                    <div class="col-md-9 col-md-offset-3 text-right">
+                        <a class="btn btn-default" href="{{ path('tricks_homepage') }}">Annuler</a>
+                        <button class="btn btn-primary" type="submit">Enregistrer</button>
+                    </div>
+                </div>
+            </fieldset>
+
+            {{ form_end(form) }}
+        </div>
+    </div>
 </div>

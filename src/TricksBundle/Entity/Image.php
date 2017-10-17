@@ -3,101 +3,105 @@
 namespace TricksBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\HttpFoundation\File\File;
 /**
  * Image
  *
  * @ORM\Table(name="image")
  * @ORM\Entity(repositoryClass="TricksBundle\Repository\ImageRepository")
- * @ORM\HasLifecycleCallbacks
+ * @Vich\Uploadable
  */
 class Image
 {
     /**
      * @var int
      *
-     * @ORM\Column(name="id", type="integer")
      * @ORM\Id
+     * @ORM\Column(name="id", type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
-     * @var string
+     * NOTE: This is not a mapped field of entity metadata, just a simple property.
      *
-     * @ORM\Column(name="url", type="string", length=255)
+     * @Vich\UploadableField(mapping="tricks_image", fileNameProperty="imageName")
+     *
+     * @var File
      */
-    private $url;
+    private $imageFile;
 
     /**
-     * @var string
+     * @ORM\Column(type="string", length=255)
      *
-     * @ORM\Column(name="name", type="string", length=255)
+     * @var string
      */
-    private $name;
+    private $imageName;
 
     /**
-     * @ORM\ManyToOne(targetEntity="TricksBundle\Entity\Tricks", cascade={"remove"})
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\Column(type="datetime")
+     *
+     * @var \DateTime
+     */
+    private $updatedAt;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="TricksBundle\Entity\Tricks", inversedBy="images")
+     * @ORM\JoinColumn(name="tricks_id", referencedColumnName="id", nullable=false)
      */
     private $tricks;
 
-
     /**
-     * Get id
+     * If manually uploading a file (i.e. not using Symfony Form) ensure an instance
+     * of 'UploadedFile' is injected into this setter to trigger the  update. If this
+     * bundle's configuration parameter 'inject_on_load' is set to 'true' this setter
+     * must be able to accept an instance of 'File' as the bundle will inject one here
+     * during Doctrine hydration.
      *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * Set url
-     *
-     * @param string $url
+     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $image
      *
      * @return Image
      */
-    public function setUrl($url)
+    public function setImageFile(File $image = null)
     {
-        $this->url = $url;
+        $this->imageFile = $image;
+
+        if ($image) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->updatedAt = new \DateTimeImmutable();
+        }
 
         return $this;
     }
 
     /**
-     * Get url
-     *
-     * @return string
+     * @return File|null
      */
-    public function getUrl()
+    public function getImageFile()
     {
-        return $this->url;
+        return $this->imageFile;
     }
 
     /**
-     * Set name
-     *
-     * @param string $name
+     * @param string $imageName
      *
      * @return Image
      */
-    public function setName($name)
+    public function setImageName($imageName)
     {
-        $this->name = $name;
+        $this->imageName = $imageName;
 
         return $this;
     }
 
     /**
-     * Get name
-     *
-     * @return string
+     * @return string|null
      */
-    public function getName()
+    public function getImageName()
     {
-        return $this->name;
+        return $this->imageName;
     }
 
     /**
@@ -110,7 +114,6 @@ class Image
     public function setTricks(\TricksBundle\Entity\Tricks $tricks)
     {
         $this->tricks = $tricks;
-
         return $this;
     }
 

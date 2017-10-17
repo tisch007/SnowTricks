@@ -20,9 +20,6 @@ use TricksBundle\Form\VideoType;
 use TricksBundle\Form\ImageType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-
-
-
 class TricksController extends Controller
 {
     public function indexAction()
@@ -82,7 +79,7 @@ class TricksController extends Controller
         $trick = new tricks();
         $formBuilder = $this->get('form.factory')->createBuilder(TricksType::class, $trick);
         $formTrick = $formBuilder->getForm();
-
+/*
         //video
         $video = new video();
         $formBuilder = $this->get('form.factory')->createBuilder(VideoType::class, $video);
@@ -91,20 +88,30 @@ class TricksController extends Controller
         //image
         $image = new image();
         $formBuilder = $this->get('form.factory')->createBuilder(ImageType::class, $image);
-        $formImage = $formBuilder->getForm();
+        $formImage = $formBuilder->getForm();*/
 
         if ($request->isMethod('POST') && $formTrick->handleRequest($request)->isValid()) {
             $trick->setDateAjout(new \DateTime());
+            $trick = $formTrick->getData();
             $em = $this->getDoctrine()->getManager();
             $em->persist($trick);
             $em->flush();
             $request->getSession()->getFlashBag()->add('notice', 'Trick bien enregistrée.');
             return $this->redirectToRoute('tricks_view', array('id' => $trick->getId()));
         }
+/*
+        if ($request->isMethod('POST') && $formImage->handleRequest($request)->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($image);
+            $em->flush();
+            $request->getSession()->getFlashBag()->add('notice', 'Image bien enregistrée.');
+
+            return $this->redirectToRoute('tricks_homepage');
+        }*/
         return $this->render('TricksBundle:Tricks:add.html.twig', array(
-            'formTrick' => $formTrick->createView(),
+            'form' => $formTrick->createView()/*,
             'formVideo' => $formVideo->createView(),
-            'formImage' => $formImage->createView()
+            'formImage' => $formImage->createView()*/
         ));
     }
 
