@@ -1,7 +1,7 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-<div class="container">
+    {#
     <div class="row">
        <h1>view all</h1>
 
@@ -19,5 +19,34 @@
           {% endfor %}
         </ul>
     </div>
-</div>
+#}
+        <div class="container">
+            <div class="row">
+                <div class="span12">
+                    {% if listTricks|length != 0 %}
+                        <ul class="thumbnails">
+                            {% for tricks in listTricks %}
+                                <li class="span4">
+                                    <div class="thumbnail">
+                                        <img src="{{ asset('img/image1.jpg') }}" alt="image1" width="300" height="150">
+                                        <div class="caption">
+                                            <h4>{{ tricks.title }}</h4>
+                                            <p>Ajouté par :{{ tricks.author }} le {{ tricks.dateAjout|date('d/m/Y à H:i') }}</p>
+                                            <a class="btn btn-primary" href="{{ path('tricks_view', { 'id' : tricks.id }) }}">Voir la figure</a>
+                                            {# si logger peut modifier supprimer
+                                            {% if panier[produit.id] is not defined %}
+                                                <a class="btn btn-success" href="{{ path('ajouter', { 'id' : produit.id }) }}">Ajouter au panier</a>
+                                            {% endif %}
+                                            #}
+                                        </div>
+                                    </div>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        Aucune figure
+                    {% endif %}
+                </div>
+            </div>
+        </div>
 {% endblock %}
