@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{#<!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8" />
@@ -11,6 +11,23 @@
     <script type="text/javascript" src="{{ asset('js/engine1/jquery.js') }}"></script>
     <link rel="stylesheet" type="text/css" href="{{ asset('js/engine1/style.css') }}" />
     <script src="https://www.youtube.com/iframe_api"></script>
+
+
+    <link rel="stylesheet" href="{{ asset('js/fileUpload/css/jquery.fileupload.css') }} ">
+    <link rel="stylesheet" href="{{ asset('js/fileUpload/css/jquery.fileupload-ui.css') }} ">
+
+
+    <noscript><link rel="stylesheet" href="{{ asset('js/fileUpload/css/jquery.fileupload-noscript.css') }}"></noscript>
+    <noscript><link rel="stylesheet" href="{{ asset('js/fileUpload/css/jquery.fileupload-ui-noscript.css') }}"></noscript>
+
+
+
+    <script src="{{ asset('js/fileUpload/js/vendor/jquery.ui.widget.js') }}"></script>
+    <script src="{{ asset('js/fileUpload/js/jquery.iframe-transport.js') }}"></script>
+    <script src="{{ asset('js/fileUpload/js/jquery.fileupload.js') }}"></script>
+
+
+
     {% block stylesheets %}{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('img/S.png') }}" />
     </head>
@@ -26,6 +43,10 @@
             <div id="logo" class="noDisplay">
                 <a href="/"><img src={{ asset('img/Snowboarding.png') }} alt="logo Snowtricks" class="logo, center-block"></a>
             </div>
+
+
+
+
         </header>
         {% block body %}{% endblock %}
         <footer>
@@ -37,4 +58,83 @@
         </footer>
         {% block javascripts %}{% endblock %}
     </body>
+</html>
+#}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>{% block titre %}SnowTricks - Let's tricks !{% endblock %}</title>
+    <meta name="keywords" content="{% block motsCles %}{% endblock %}"/>
+    <meta name="description" content="{% block description %}{% endblock %}"/>
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('css/bootstrap-responsive.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('css/font-awesome.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('js/engine1/style.css') }}"/>
+    <script type="text/javascript" src="{{ asset('js/engine1/jquery.js') }}"></script>
+    <script src="https://www.youtube.com/iframe_api"></script>
+    {% block stylesheets %}{% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('img/S.png') }}"/>
+</head>
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="brand" href="{{ path('tricks_homepage') }}">
+                    <img src="{{ asset('img/Snowboard.png') }}" alt="Snowtricks" class="img-responsive ">
+                    SnowTricks</a>
+            </div>
+
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="{{ path('tricks_homepage') }}">Accueil</a></li>
+                <li><a href="{{ path('tricks_add') }}">Ajouter une figure</a></li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="{{ path('fos_user_registration_register') }}"><span class="glyphicon glyphicon-user"></span>
+                        Inscription</a></li>
+                <li><a href="{{ path('fos_user_security_login') }}"><span class="glyphicon glyphicon-log-in"></span> Connection</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container">
+{% block body %}{% endblock %}
+</div>
+<hr/>
+<footer id="footer" class="vspace20">
+    <div class="container">
+        <div class="row">
+            <div class="span4">
+                <h4>Nos partenaires</h4>
+                <p><a href="https://www.snow-concept.com"><span
+                                class="icon-shopping-cart">&nbsp&nbsp;snow-concept.com</span></a></p>
+                <p><a href="https://www.laglisse.com"><span
+                                class="icon-shopping-cart">&nbsp&nbsp;laglisse.com</span></a></p>
+                <p><a href="https://www.snowinn.com"><span class="icon-shopping-cart">&nbsp&nbsp;snowinn.com</span></a>
+                </p>
+            </div>
+
+            <div class="span4">
+                <a href="/"><img src="{{ asset('img/image3.jpg') }}" alt="Snowtricks"
+                                 class="center-block img-rounded img-responsive "></a>
+                <p>&copy; Copyright {{ "now"|date('Y') }} - SnowTricks</p>
+            </div>
+
+            <div class="span4">
+                <h4>Nous contacter</h4>
+                <p><i class="icon-phone"></i>&nbsp;Tel: 0637556424</p>
+                <p><i class="icon-envelope"></i>&nbsp;Mail: snowtricks@gmail.com</p>
+            </div>
+        </div>
+    </div>
+</footer>
+<script src="{{ asset('js/jquery-1.10.0.min.js') }}"></script>
+<script src="{{ asset('../js/bootstrap.js') }}"></script>
+
+{% block javascripts %}{% endblock %}
+</body>
 </html>

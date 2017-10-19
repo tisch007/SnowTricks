@@ -23,3 +23,7 @@ tricks_delete:
 tricks_view:
     path:      tricks/{id}
     defaults: { _controller: TricksBundle:Tricks:view }
+
+fileUpload:
+  path:       server/php/
+  defaults: { _controller: web/js/fileUpload/server/php/index.php  }
