@@ -33,8 +33,8 @@ class TricksController extends Controller
     {
         //tricks
         $repository = $this->getDoctrine()->getManager()->getRepository('TricksBundle:Tricks');
-        $oneTricks = $repository->Find($id);
-        if (null === $oneTricks) {
+        $trick = $repository->Find($id);
+        if (null === $trick) {
             throw new NotFoundHttpException("Le trick d'id ".$id." n'existe pas.");
         }
         //video
@@ -56,17 +56,17 @@ class TricksController extends Controller
         //Enregistrement commentaire
         if ($request->isMethod('POST') && $formComment->handleRequest($request)->isValid()) {
             $comment->setDateAjout(new \DateTime());
-            $comment->setTricks($oneTricks);
+            $comment->setTricks($trick);
             $em = $this->getDoctrine()->getManager();
             $em->persist($comment);
             $em->flush();
             $request->getSession()->getFlashBag()->add('notice', 'Trick bien enregistrée.');
-            return $this->redirectToRoute('tricks_view', array('id' => $oneTricks->getId()));
+            return $this->redirectToRoute('tricks_view', array('id' => $trick->getId()));
         }
 
         //Vue
         return $this->render('TricksBundle:Tricks:view.html.twig', array(
-            'oneTricks' => $oneTricks,
+            'trick' => $trick,
             'listComment' => $listComment,
             'formComment' => $formComment->createView(),
             'listVideo' => $listVideo,

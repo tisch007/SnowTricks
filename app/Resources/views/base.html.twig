@@ -1,71 +1,8 @@
-{#<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8" />
-    <title>{% block title %}Snowtricks{% endblock %}</title>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}" />
-    <script type="text/javascript" src="{{ asset('js/engine1/jquery.js') }}"></script>
-    <link rel="stylesheet" type="text/css" href="{{ asset('js/engine1/style.css') }}" />
-    <script src="https://www.youtube.com/iframe_api"></script>
-
-
-    <link rel="stylesheet" href="{{ asset('js/fileUpload/css/jquery.fileupload.css') }} ">
-    <link rel="stylesheet" href="{{ asset('js/fileUpload/css/jquery.fileupload-ui.css') }} ">
-
-
-    <noscript><link rel="stylesheet" href="{{ asset('js/fileUpload/css/jquery.fileupload-noscript.css') }}"></noscript>
-    <noscript><link rel="stylesheet" href="{{ asset('js/fileUpload/css/jquery.fileupload-ui-noscript.css') }}"></noscript>
-
-
-
-    <script src="{{ asset('js/fileUpload/js/vendor/jquery.ui.widget.js') }}"></script>
-    <script src="{{ asset('js/fileUpload/js/jquery.iframe-transport.js') }}"></script>
-    <script src="{{ asset('js/fileUpload/js/jquery.fileupload.js') }}"></script>
-
-
-
-    {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('img/S.png') }}" />
-    </head>
-    <body>
-        <nav class="col-xs-12" id="nav">
-            <ul class="ulMenu">
-                <li><a href="{{ path('tricks_homepage') }}">Accueil</a></li>
-                <li><a href="{{ path('tricks_add') }}">Ajouter un trick</a></li>
-                <li><a href="{{ path('user_homepage') }}">Connexion</a></li>
-            </ul>
-        </nav>
-        <header class="col-xs-3 noDisplay">
-            <div id="logo" class="noDisplay">
-                <a href="/"><img src={{ asset('img/Snowboarding.png') }} alt="logo Snowtricks" class="logo, center-block"></a>
-            </div>
-
-
-
-
-        </header>
-        {% block body %}{% endblock %}
-        <footer>
-            <div class="row">
-                <div class="col-lg-12">
-                    footer
-                </div>
-            </div>
-        </footer>
-        {% block javascripts %}{% endblock %}
-    </body>
-</html>
-#}
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8"/>
     <title>{% block titre %}SnowTricks - Let's tricks !{% endblock %}</title>
-    <meta name="keywords" content="{% block motsCles %}{% endblock %}"/>
     <meta name="description" content="{% block description %}{% endblock %}"/>
     <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}"/>
     <link rel="stylesheet" href="{{ asset('css/bootstrap-responsive.css') }}"/>
@@ -91,14 +28,6 @@
                 <li class="active"><a href="{{ path('tricks_homepage') }}">Accueil</a></li>
                 <li><a href="{{ path('tricks_add') }}">Ajouter une figure</a></li>
             </ul>
-{#
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="{{ path('fos_user_registration_register') }}"><span class="glyphicon glyphicon-user"></span>
-                        Inscription</a></li>
-                <li><a href="{{ path('fos_user_security_login') }}"><span class="glyphicon glyphicon-log-in"></span> Connection</a>
-                </li>
-            </ul>
-            #}
         </div>
     </div>
 </nav>
