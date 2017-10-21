@@ -5,7 +5,7 @@
 {% block body %}
     <div class="container">
         <div class="row text-center">
-            <div class="span8">
+            <div class="col-sm-8">
                 <h2>{{ trick.title }}</h2>
 
                 </br>
@@ -16,15 +16,14 @@
                 </br>
 
             </div>
-            <div class="span4">
-                <h4>image</h4>
+            <div class="col-sm-4">
                 <img src="{{ asset('img/image1.jpg') }}" alt="image1" width="300" height="150" class="img-circle img-responsive">
             </div>
         </div>
-        <div class="span12">
+        <br>
+        <br>
+        <div class="col-sm-12">
             <div class="row">
-                <h3 class="text-center">Video</h3>
-                <!-- Start WOWSlider.com BODY section --> <!-- add to the <body> of your page -->
                 <div id="wowslider-container1">
                     <div class="ws_images">
                         <ul>
@@ -63,7 +62,7 @@
                 </div>
             </div>
         </div>
-        <div class="offset8 span4">
+        <div class="col-md-offset-8 col-md-4">
             <div class="row">
                 <br>
                 <br>
@@ -77,7 +76,7 @@
             {% endif %}
             </div>
         </div>
-        <div class="span12">
+        <div class="col-sm-12">
             <div class="row">
                 <h3>Commentaire</h3>
                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
