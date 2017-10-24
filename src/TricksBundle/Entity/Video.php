@@ -39,8 +39,8 @@ class Video
     private $link;
 
     /**
-     * @ORM\ManyToOne(targetEntity="TricksBundle\Entity\Tricks", cascade={"remove"})
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity="TricksBundle\Entity\Tricks", inversedBy="Video", cascade={"remove"})
+     * @ORM\JoinColumn(nullable=true)
      */
     private $tricks;
     /**

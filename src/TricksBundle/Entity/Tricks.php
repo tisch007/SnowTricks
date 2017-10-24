@@ -64,13 +64,13 @@ class Tricks
 
     /**
      * @ORM\OneToMany(targetEntity="TricksBundle\Entity\Video", mappedBy="Video")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $video;
 
     /**
      * @ORM\OneToMany(targetEntity="TricksBundle\Entity\Image", mappedBy="Image")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $image;
 
