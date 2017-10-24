@@ -58,6 +58,7 @@ class TricksController extends Controller
         $formComment = $formBuilder->getForm();
 
         //Enregistrement commentaire
+        $comment->setAuthor('lol');
         if ($request->isMethod('POST') && $formComment->handleRequest($request)->isValid()) {
             $comment->setDateAjout(new \DateTime());
             $comment->setTricks($trick);

@@ -45,8 +45,8 @@ class Comment
     private $dateAjout;
 
     /**
-     * @ORM\ManyToOne(targetEntity="TricksBundle\Entity\Tricks", cascade={"remove"})
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity="TricksBundle\Entity\Tricks")
+     * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
      */
     private $tricks;
 
