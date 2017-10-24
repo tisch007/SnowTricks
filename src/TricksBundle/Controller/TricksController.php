@@ -26,7 +26,11 @@ class TricksController extends Controller
     {
         $repository = $this->getDoctrine()->getManager()->getRepository('TricksBundle:Tricks');
         $listTricks = $repository->FindAll();
-        return $this->render('TricksBundle:Tricks:index.html.twig', array('listTricks' => $listTricks));
+
+        $repository = $this->getDoctrine()->getManager()->getRepository('TricksBundle:Image');
+        $listImage = $repository->FindAll();
+
+        return $this->render('TricksBundle:Tricks:index.html.twig', array('listTricks' => $listTricks,'listImage' => $listImage));
     }
 
     public function viewAction($id, Request $request)

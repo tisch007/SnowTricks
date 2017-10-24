@@ -68,6 +68,11 @@ class Tricks
      */
     private $video;
 
+    /**
+     * @ORM\OneToMany(targetEntity="TricksBundle\Entity\Image", mappedBy="Image")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $image;
 
     /**
      * Get id
@@ -238,5 +243,29 @@ class Tricks
     public function getVideo()
     {
         return $this->video;
+    }
+
+    /**
+     * Add image
+     *
+     * @param \TricksBundle\Entity\Image $image
+     *
+     * @return Tricks
+     */
+    public function setImage(\Ecommerce\EcommerceBundle\Entity\Image $image)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return \Ecommerce\EcommerceBundle\Entity\Image
+     */
+    public function getImage()
+    {
+        return $this->image;
     }
 }

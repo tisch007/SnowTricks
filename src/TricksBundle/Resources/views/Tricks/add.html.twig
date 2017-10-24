@@ -3,20 +3,9 @@
 
 {% block body %}
 <div class="container">
-    </br>
-    </br>
-    </br>
-    </br>
-    <h1>Add</h1>
     {% include 'TricksBundle:form:tricksForm.html.twig' %}
+    {#
     <script>
-     {#
-        $('#hide').hide();
-        $('#addImage').on('click', function() {
-            $('#hide').show('slow');
-            $('#addImage').hide('slow');
-        });
-        #}
         $(document).ready(function($){
             $('#addVideo').click(function(e){
                 var copie = $('#divLienYoutube').clone();
@@ -26,5 +15,6 @@
             });
         });
     </script>
+    #}
 </div>
 {% endblock %}

@@ -2,31 +2,38 @@
 
 {% block body %}
     <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    {% if listTricks|length != 0 %}
-                        <ul class="thumbnails list-unstyled">
-                            {% for tricks in listTricks %}
-                                <li class="col-md-4 col-sm-6 text-center">
-                                    <div class="thumbnail">
+        <div class="row">
+            <div class="col-lg-12">
+                {% if listTricks|length != 0 %}
+                    <ul class="thumbnails list-unstyled">
+                        {% for tricks in listTricks %}
+                            <li class="col-md-4 col-sm-6 text-center">
+                                <div class="thumbnail">
+                                    <div class="caption">
+                                        <h4>{{ tricks.title }}</h4>
                                         <img src="{{ asset('img/image1.jpg') }}" alt="image1" width="300" height="150">
-                                        <div class="caption">
-                                            <h4>{{ tricks.title }}</h4>
-                                            <p><em>Ajouté par : <strong>{{  tricks.author }}</strong> le {{ tricks.dateAjout|date('d/m/Y à H:i') }}</em></p>
-                                            <a class="btn btn-primary" href="{{ path('tricks_view', { 'id' : tricks.id }) }}">Voir la figure</a>
-                                            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                                                <a class="btn btn-warning" href="{{ path('tricks_edit', { 'id' : tricks.id }) }}"><i class="icon-pencil"></i></a>
-                                                <a class="btn btn-danger" href="{{ path('tricks_delete', { 'id' : tricks.id }) }}"><i class="icon-trash"></i></a>
-                                            {% endif %}
-                                        </div>
+
+                                        <p><em>Ajouté par : <strong>{{ tricks.author }}</strong>
+                                                le {{ tricks.dateAjout|date('d/m/Y à H:i') }}</em></p>
+                                        <a class="btn btn-primary"
+                                           href="{{ path('tricks_view', { 'id' : tricks.id }) }}">Voir la figure</a>
+                                        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                                            <a class="btn btn-warning"
+                                               href="{{ path('tricks_edit', { 'id' : tricks.id }) }}"><i
+                                                        class="icon-pencil"></i></a>
+                                            <a class="btn btn-danger"
+                                               href="{{ path('tricks_delete', { 'id' : tricks.id }) }}"><i
+                                                        class="icon-trash"></i></a>
+                                        {% endif %}
                                     </div>
-                                </li>
-                            {% endfor %}
-                        </ul>
-                    {% else %}
-                        Aucune figure
-                    {% endif %}
-                </div>
+                                </div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    Aucune figure
+                {% endif %}
             </div>
         </div>
+    </div>
 {% endblock %}

@@ -11,10 +11,11 @@
         <fieldset>
             <div class="form-group">
                 <div class="row">
-                    <div class="span9">
+                    <div class="col-md-offset-1 col-sm-10">
                         {{ form_widget(formComment.content, {'attr': {'class': 'form-control'}}) }}
+                        <br>
                     </div>
-                    <div class="span3">
+                    <div class="col-md-offset-10 col-sm-2">
                         <button class="btn btn-primary" type="submit">Envoyer</button>
                     </div>
                     <div class="col-md-9 col-md-offset-3">

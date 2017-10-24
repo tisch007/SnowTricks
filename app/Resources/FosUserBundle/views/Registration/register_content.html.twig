@@ -2,11 +2,11 @@
 
 <div class="container">
     <div class="row">
-        <div class="span12">
+        <div class="col-sm-12">
             <h2>Connexion</h2>
             <div id="collapseOne" class="accordion-body collapse in">
                 <div class="accordion-inner">
-                    <div class="span4">
+                    <div class="col-sm-4">
                         <h4>Pas encore inscrit ?</h4>
                         <em>
                             nous vous invitons à vous inscrire<br/>
@@ -14,10 +14,12 @@
                         </em>
                     </div>
 
-                    <div class="span4 offset2">
+                    <div class="col-sm-4 col-sm-offset-2">
                         <h4>Inscription</h4>
                         {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+
                         {{ form_widget(form) }}
+
                         <br/>
                         <input class="btn btn-primary" type="submit" value="{{ 'registration.submit'|trans }}"/>
                         {{ form_end(form) }}

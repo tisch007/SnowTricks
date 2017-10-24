@@ -10,14 +10,15 @@
 
                 </br>
                 <em>Ajouté par : <strong>{{ trick.author }}</strong> le : {{ trick.dateAjout|date('d/m/Y à H:i') }}<br>
-                dans la catégorie <strong>{{ trick.category.name }}</strong></em></p>
+                    dans la catégorie <strong>{{ trick.category.name }}</strong></em></p>
 
                 {{ trick.content }}
                 </br>
 
             </div>
             <div class="col-sm-4">
-                <img src="{{ asset('img/image1.jpg') }}" alt="image1" width="300" height="150" class="img-circle img-responsive">
+                <img src="{{ asset('img/image1.jpg') }}" alt="image1" width="300" height="150"
+                     class="img-circle img-responsive">
             </div>
         </div>
         <br>
@@ -66,29 +67,34 @@
             <div class="row">
                 <br>
                 <br>
-            <a href="{{ path('tricks_homepage') }}" class="btn btn-default"><i
-                        class="icon-chevron-left"></i>&nbspRetour</a>
-            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                <a class="btn btn-warning" href="{{ path('tricks_edit', { 'id' : trick.id }) }}"><i
-                            class="icon-pencil"></i>&nbsp Modifier</a>
-                <a class="btn btn-danger" href="{{ path('tricks_delete', { 'id' : trick.id }) }}"><i
-                            class="icon-trash"></i>&nbsp Supprimer</a>
-            {% endif %}
+                <a href="{{ path('tricks_homepage') }}" class="btn btn-default"><i
+                            class="icon-chevron-left"></i>&nbspRetour</a>
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    <a class="btn btn-warning" href="{{ path('tricks_edit', { 'id' : trick.id }) }}"><i
+                                class="icon-pencil"></i>&nbsp Modifier</a>
+                    <a class="btn btn-danger" href="{{ path('tricks_delete', { 'id' : trick.id }) }}"><i
+                                class="icon-trash"></i>&nbsp Supprimer</a>
+                {% endif %}
             </div>
         </div>
+
         <div class="col-sm-12">
             <div class="row">
-                <h3>Commentaire</h3>
+                <h3>Commentaires</h3>
                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                     {% include 'TricksBundle:form:commentForm.html.twig' %}
-                    </br>
                 {% endif %}
                 <ul>
                     {% for comment in listComment %}
-                        <li>
-                            Rédigé par : {{ comment.author }} le : {{ comment.dateAjout|date('d/m/Y à H:i') }}
-                            </br>
-                            {{ comment.content }}
+                        <li class="panel-group list-unstyled">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    Rédigé par {{ comment.author }} le {{ comment.dateAjout|date('d/m/Y à H:i') }}
+                                </div>
+                                <div class="panel-body">
+                                    {{ comment.content }}
+                                </div>
+                             <div>
                         </li>
                     {% endfor %}
                 </ul>

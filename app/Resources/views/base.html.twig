@@ -15,7 +15,7 @@
     {% block stylesheets %}{% endblock %}
     <link rel="icon" type="image/x-icon" href="{{ asset('img/S.png') }}"/>
 </head>
-<body>
+
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
@@ -49,8 +49,7 @@
 </nav>
 {% block body %}{% endblock %}
 
-<br/>
-<footer id="footer" class="vspace20">
+<footer id="footer" class="panel-footer">
     <div class="container text-center">
         <div class="row">
             <div class="col-sm-4">
@@ -65,7 +64,7 @@
 
             <div class="col-sm-4">
                 <a href="/"><img src="{{ asset('img/image3.jpg') }}" alt="Snowtricks"
-                                 class="center-block img-rounded img-responsive "></a>
+                                 class="center-block img-rounded img-responsive" style="margin-top: 15px"></a>
                 <p>&copy; Copyright {{ "now"|date('Y') }} - SnowTricks</p>
             </div>
 
@@ -77,6 +76,7 @@
         </div>
     </div>
 </footer>
+
 
 
 {% block javascripts %}{% endblock %}
