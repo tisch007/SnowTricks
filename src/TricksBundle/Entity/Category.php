@@ -8,7 +8,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * category
  *
- * @ORM\Table(name="Category")
+ * @ORM\Table(name="category")
  * @ORM\Entity(repositoryClass="TricksBundle\Repository\CategoryRepository")
  *  @UniqueEntity(
  *      fields={"name"},
