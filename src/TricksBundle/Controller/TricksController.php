@@ -25,8 +25,8 @@ class TricksController extends Controller
     public function indexAction()
     {
         $repository = $this->getDoctrine()->getManager()->getRepository('TricksBundle:Tricks');
-        $listTricks = $repository->FindAll();
-
+        //$listTricks = $repository->findBy(array(), array('dateAjout' => 'desc'));
+        $listTricks = $repository->findAll();
         $repository = $this->getDoctrine()->getManager()->getRepository('TricksBundle:Image');
         $listImage = $repository->FindAll();
 
@@ -52,20 +52,22 @@ class TricksController extends Controller
 
         //Commentaire
         $repository = $this->getDoctrine()->getManager()->getRepository('TricksBundle:Comment');
-        $listComment = $repository->findByTricks($id);
+        $listComment = $repository->findByTricks($id, array('id' => 'DESC'));
         $comment = new comment();
         $formBuilder = $this->get('form.factory')->createBuilder(CommentType::class, $comment);
         $formComment = $formBuilder->getForm();
 
         //Enregistrement commentaire
-        $comment->setAuthor('lol');
+
+
         if ($request->isMethod('POST') && $formComment->handleRequest($request)->isValid()) {
+            $comment->setAuthor($this->get('security.token_storage')->getToken()->getUser()->getUsername());
             $comment->setDateAjout(new \DateTime());
             $comment->setTricks($trick);
             $em = $this->getDoctrine()->getManager();
             $em->persist($comment);
             $em->flush();
-            $request->getSession()->getFlashBag()->add('notice', 'Trick bien enregistrée.');
+            $request->getSession()->getFlashBag()->add('notice', 'Commentaire bien enregistrée.');
             return $this->redirectToRoute('tricks_view', array('id' => $trick->getId()));
         }
 
@@ -85,35 +87,39 @@ class TricksController extends Controller
         $trick = new tricks();
         $formBuilder = $this->get('form.factory')->createBuilder(TricksType::class, $trick);
         $formTrick = $formBuilder->getForm();
-/*
-        //video
-        $video = new video();
-        $formBuilder = $this->get('form.factory')->createBuilder(VideoType::class, $video);
-        $formVideo = $formBuilder->getForm();
-*/
+
         //image
         $image = new image();
         $formBuilder = $this->get('form.factory')->createBuilder(ImageType::class, $image);
         $formImage = $formBuilder->getForm();
 
+
         if ($request->isMethod('POST') && $formTrick->handleRequest($request)->isValid()) {
             $trick->setDateAjout(new \DateTime());
             $trick = $formTrick->getData();
+            foreach($trick->getVideo() as $video){
+                $video->setName($trick->getTitle());
+                $video->setTricks($trick);
+                $link2 = explode("watch?v=", $video->getLink());
+                $video->setLink($link2[1]);
+            }
+
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($trick);
             $em->flush();
-
+/*
             if ($request->isMethod('POST') && $formImage->handleRequest($request)->isValid()) {
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($image);
                 $em->flush();
                 $request->getSession()->getFlashBag()->add('notice', 'Image bien enregistrée.');
-            }
+            }*/
 
             $request->getSession()->getFlashBag()->add('notice', 'Trick bien enregistrée.');
             return $this->redirectToRoute('tricks_view', array('id' => $trick->getId()));
         }
-
+/*
         if ($request->isMethod('POST') && $formImage->handleRequest($request)->isValid()) {
 
             $em = $this->getDoctrine()->getManager();
@@ -122,10 +128,9 @@ class TricksController extends Controller
             $request->getSession()->getFlashBag()->add('notice', 'Image bien enregistrée.');
 
             return $this->redirectToRoute('tricks_homepage');
-        }
+        }*/
         return $this->render('TricksBundle:Tricks:add.html.twig', array(
-            'form' => $formTrick->createView(),/*,
-            'formVideo' => $formVideo->createView(),*/
+            'form' => $formTrick->createView(),
             'formImage' => $formImage->createView()
         ));
     }
@@ -147,13 +152,17 @@ class TricksController extends Controller
             return $this->redirectToRoute('tricks_view', array('id' => $trick->getId()));
         }
 
-        return $this->render('TricksBundle:Tricks:edit.html.twig', array('form' => $form->createView()));
+        return $this->render('TricksBundle:Tricks:edit.html.twig', array(
+            'trick' =>  $trick,
+            'form' => $form->createView()
+        ));
     }
 
     public function deleteAction($id, Request $request)
     {
         $em = $this->getDoctrine()->getManager();
         $trick = $em->getRepository('TricksBundle:Tricks')->find($id);
+
         if ($trick == null) {
             throw new NotFoundHttpException();
         }

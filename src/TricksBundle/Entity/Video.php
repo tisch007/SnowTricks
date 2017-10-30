@@ -3,8 +3,6 @@
 namespace TricksBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
-
 /**
  * Video
  *
@@ -26,7 +24,6 @@ class Video
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
-     * @Assert\NotBlank()
      */
     private $name;
 
@@ -34,13 +31,12 @@ class Video
      * @var string
      *
      * @ORM\Column(name="link", type="string", length=255)
-     * @Assert\NotBlank()
      */
     private $link;
 
     /**
-     * @ORM\ManyToOne(targetEntity="TricksBundle\Entity\Tricks", inversedBy="Video", cascade={"remove"})
-     * @ORM\JoinColumn(nullable=true)
+     * @ORM\ManyToOne(targetEntity="TricksBundle\Entity\Tricks", inversedBy="video")
+     * @ORM\JoinColumn(nullable=true, name="tricks_id", referencedColumnName="id")
      */
     private $tricks;
     /**

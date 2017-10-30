@@ -49,21 +49,26 @@
                         {{ form_errors(form.category) }}
                     </div>
                 </div>
-
-                <div class="form-group" id="divLienYoutube">
-                    {{ form_label(form.video, 'Lien Video', {'label_attr': {'class': 'col-md-3 control-label'}}) }}
-                    <div class="col-md-9">
-                        {{ form_widget(form.video, {'attr': {'class': 'form-control', 'rows': '5', 'placeholder': 'Lien Youtube'}}) }}
+                {% macro information_prototype(video) %}
+                    <div class="form-group">
+                        {{ form_label(video, false, {'label_attr': {'class': 'col-md-3 control-label'}}) }}
+                        <div class="col-md-7">
+                            {{ form_widget(video) }}
+                        </div>
                     </div>
-                    <div class="col-md-9 col-md-offset-3">
-                        {{ form_errors(form.video) }}
-                    </div>
+                {% endmacro %}
+                <div id="videoAdd" class="video"
+                     data-prototype="{{ _self.information_prototype(form.video.vars.prototype)|e }}">
+                    {% for video in form.video %}
+                        {{ _self.information_prototype(video) }}
+                    {% endfor %}
                 </div>
                 <div class="form-group">
-                    <div class="col-md-9 col-md-offset-1">
-                        <button id="addVideo" class="btn btn-default" href="">Ajouter une video</button>
+                    <div class="col-md-offset-1">
+                        <a href="#" id="add_video" class="btn btn-default">Ajouter une video</a>
                     </div>
                 </div>
+
                 <div class="form-group">
                     <div class="col-md-9 col-md-offset-3 text-right">
                         <a class="btn btn-default" href="{{ path('tricks_homepage') }}">Annuler</a>
@@ -75,3 +80,69 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        // On récupère la balise <div> en question qui contient l'attribut « data-prototype » qui nous intéresse.
+        var $container = $('div#videoAdd');
+        // On définit un compteur unique pour nommer les champs qu'on va ajouter dynamiquement
+        var index = $container.find(':input').length;
+        // On ajoute un nouveau champ à chaque clic sur le lien d'ajout.
+        $('#add_video').click(function (e) {
+            addVideo($container);
+            e.preventDefault(); // évite qu'un # apparaisse dans l'URL
+            //    $('#tricksbundle_tricks_video label').addClass('col-md-3 control-label');
+
+            return false;
+        });
+
+        // On ajoute un premier champ automatiquement s'il n'en existe pas déjà un (cas d'une nouvelle annonce par exemple).
+        if (index == 0) {
+            //addVideo($container);
+        } else {
+            // S'il existe déjà des catégories, on ajoute un lien de suppression pour chacune d'entre elles
+            $container.children('div').each(function () {
+                addDeleteLink($(this));
+            });
+        }
+
+        // La fonction qui ajoute un formulaire VideoType
+        function addVideo($container) {
+            // Dans le contenu de l'attribut « data-prototype », on remplace :
+            // - le texte "__name__label__" qu'il contient par le label du champ
+            // - le texte "__name__" qu'il contient par le numéro du champ
+            var template = $container.attr('data-prototype')
+                .replace(/__name__label__/g, 'Video n°' + (index + 1))
+                .replace(/__name__/g, index)
+
+            ;
+
+
+            // On crée un objet jquery qui contient ce template
+            var $prototype = $(template);
+            console.log(template);
+            // On ajoute au prototype un lien pour pouvoir supprimer la catégorie
+            addDeleteLink($prototype);
+            // On ajoute le prototype modifié à la fin de la balise <div>
+            $container.append($prototype);
+            // Enfin, on incrémente le compteur pour que le prochain ajout se fasse avec un autre numéro
+            $('#tricksbundle_tricks_video_'+(index)+'_link').addClass("form-control");
+            index++;
+
+        }
+
+        // La fonction qui ajoute un lien de suppression d'une catégorie
+        function addDeleteLink($prototype) {
+            // Création du lien
+            var $deleteLink = $('<a href="#" class="btn btn-danger">Supprimer</a>');
+            // Ajout du lien
+            $prototype.append($deleteLink);
+            // Ajout du listener sur le clic du lien pour effectivement supprimer la video
+            $deleteLink.click(function (e) {
+                $prototype.remove();
+                e.preventDefault(); // évite qu'un # apparaisse dans l'URL
+                return false;
+            });
+        }
+    });
+</script>

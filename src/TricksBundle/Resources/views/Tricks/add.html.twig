@@ -2,19 +2,8 @@
 
 
 {% block body %}
-<div class="container">
+
+
     {% include 'TricksBundle:form:tricksForm.html.twig' %}
-    {#
-    <script>
-        $(document).ready(function($){
-            $('#addVideo').click(function(e){
-                var copie = $('#divLienYoutube').clone();
-                copie.find('#divLienYoutube').attr("#divLienYoutube","#test");
-                copie.appendTo('#divLienYoutube');
-                return false;
-            });
-        });
-    </script>
-    #}
-</div>
+
 {% endblock %}

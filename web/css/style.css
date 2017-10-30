@@ -1,5 +1,14 @@
-body {
-	padding-bottom: 40px;
-    padding-top: 90px;
-}
 
+html, body {
+    height: 100%;
+    margin: 0; padding: 0;
+}
+body {
+    display : table;
+    width: 100%;
+    padding-top: 100px;
+}
+footer {
+    display : table-row;
+    height: 100px; /* à titre d'exemple */
+}

@@ -4,7 +4,6 @@ namespace TricksBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Tricks
  *
@@ -12,7 +11,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity(repositoryClass="TricksBundle\Repository\TricksRepository")
  * @UniqueEntity(
  *      fields={"title"},
- *      message="Ce Trick existe déjà."
+ *      message="Cette figure existe déjà."
  * )
  */
 class Tricks
@@ -37,7 +36,6 @@ class Tricks
      * @var string
      *
      * @ORM\Column(name="content", type="text")
-     * @Assert\NotBlank()
      */
     private $content;
 
@@ -45,7 +43,6 @@ class Tricks
      * @var string
      *
      * @ORM\Column(name="author", type="string")
-     * @Assert\NotBlank()
      */
     private $author;
 
@@ -63,16 +60,16 @@ class Tricks
     private $category;
 
     /**
-     * @ORM\OneToMany(targetEntity="TricksBundle\Entity\Video", mappedBy="Video")
-     * @ORM\JoinColumn(nullable=true)
+     * @ORM\OneToMany(targetEntity="TricksBundle\Entity\Video", mappedBy="tricks",  cascade={"persist", "remove"})
      */
     private $video;
 
     /**
-     * @ORM\OneToMany(targetEntity="TricksBundle\Entity\Image", mappedBy="Image")
+     * @ORM\OneToMany(targetEntity="TricksBundle\Entity\Image", mappedBy="Tricks")
      * @ORM\JoinColumn(nullable=true)
      */
     private $image;
+
 
     /**
      * Get id
@@ -252,20 +249,5 @@ class Tricks
      *
      * @return Tricks
      */
-    public function setImage(\Ecommerce\EcommerceBundle\Entity\Image $image)
-    {
-        $this->image = $image;
 
-        return $this;
-    }
-
-    /**
-     * Get image
-     *
-     * @return \Ecommerce\EcommerceBundle\Entity\Image
-     */
-    public function getImage()
-    {
-        return $this->image;
-    }
 }

@@ -25,7 +25,6 @@ class Comment
      * @var string
      *
      * @ORM\Column(name="author", type="string", length=255)
-     * @Assert\NotBlank()
      */
     private $author;
 
