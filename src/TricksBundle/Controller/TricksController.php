@@ -44,6 +44,10 @@ class TricksController extends Controller
         //video
         $repository = $this->getDoctrine()->getManager()->getRepository('TricksBundle:Video');
         $listVideo = $repository->findByTricks($id);
+        foreach($listVideo as $video){
+            $link2 = explode("https://www.youtube.com/watch?v=", $video->getLink());
+            $video->setLink($link2[1]);
+        }
 
         //image
 
@@ -58,8 +62,6 @@ class TricksController extends Controller
         $formComment = $formBuilder->getForm();
 
         //Enregistrement commentaire
-
-
         if ($request->isMethod('POST') && $formComment->handleRequest($request)->isValid()) {
             $comment->setAuthor($this->get('security.token_storage')->getToken()->getUser()->getUsername());
             $comment->setDateAjout(new \DateTime());
@@ -100,11 +102,7 @@ class TricksController extends Controller
             foreach($trick->getVideo() as $video){
                 $video->setName($trick->getTitle());
                 $video->setTricks($trick);
-                $link2 = explode("watch?v=", $video->getLink());
-                $video->setLink($link2[1]);
             }
-
-
             $em = $this->getDoctrine()->getManager();
             $em->persist($trick);
             $em->flush();
@@ -147,8 +145,20 @@ class TricksController extends Controller
         $form = $formBuilder->getForm();
 
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+            //suppresions des anciennes videos
+            $videoList = $em->getRepository('TricksBundle:Video')->findByTricks($id);
+            foreach ($videoList as $video){
+                $em->remove($video);
+            }
+            $trick->setDateAjout(new \DateTime());
+            $trick = $form->getData();
+            foreach($trick->getVideo() as $video){
+                $video->setName($trick->getTitle());
+                $video->setTricks($trick);
+            }
+            $em->persist($trick);
             $em->flush();
-            $request->getSession()->getFlashBag()->add('notice', 'Trick bien modifiée.');
+            $request->getSession()->getFlashBag()->add('notice', 'La figure a été modifiée.');
             return $this->redirectToRoute('tricks_view', array('id' => $trick->getId()));
         }
 

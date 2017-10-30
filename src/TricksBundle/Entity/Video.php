@@ -36,7 +36,7 @@ class Video
 
     /**
      * @ORM\ManyToOne(targetEntity="TricksBundle\Entity\Tricks", inversedBy="video")
-     * @ORM\JoinColumn(nullable=true, name="tricks_id", referencedColumnName="id")
+     * @ORM\JoinColumn(nullable=true, name="tricks_id", referencedColumnName="id", onDelete="cascade")
      */
     private $tricks;
     /**
