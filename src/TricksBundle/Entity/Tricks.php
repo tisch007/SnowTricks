@@ -65,8 +65,7 @@ class Tricks
     private $video;
 
     /**
-     * @ORM\OneToMany(targetEntity="TricksBundle\Entity\Image", mappedBy="Tricks")
-     * @ORM\JoinColumn(nullable=true)
+     * @ORM\OneToMany(targetEntity="TricksBundle\Entity\Image", mappedBy="tricks",  cascade={"persist", "remove"})
      */
     private $image;
 
@@ -250,4 +249,38 @@ class Tricks
      * @return Tricks
      */
 
+
+    /**
+     * Add image
+     *
+     * @param \TricksBundle\Entity\Image $image
+     *
+     * @return Tricks
+     */
+    public function addImage(\TricksBundle\Entity\Image $image)
+    {
+        $this->image[] = $image;
+
+        return $this;
+    }
+
+    /**
+     * Remove image
+     *
+     * @param \TricksBundle\Entity\Image $image
+     */
+    public function removeImage(\TricksBundle\Entity\Image $image)
+    {
+        $this->image->removeElement($image);
+    }
+
+    /**
+     * Get image
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
 }

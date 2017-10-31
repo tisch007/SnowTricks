@@ -4,7 +4,6 @@ namespace TricksBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Tricks
  *
@@ -12,7 +11,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity(repositoryClass="TricksBundle\Repository\TricksRepository")
  * @UniqueEntity(
  *      fields={"title"},
- *      message="Ce Trick existe déjà."
+ *      message="Cette figure existe déjà."
  * )
  */
 class Tricks
@@ -37,7 +36,6 @@ class Tricks
      * @var string
      *
      * @ORM\Column(name="content", type="text")
-     * @Assert\NotBlank()
      */
     private $content;
 
@@ -45,7 +43,6 @@ class Tricks
      * @var string
      *
      * @ORM\Column(name="author", type="string")
-     * @Assert\NotBlank()
      */
     private $author;
 
@@ -63,14 +60,12 @@ class Tricks
     private $category;
 
     /**
-     * @ORM\OneToMany(targetEntity="TricksBundle\Entity\Video", mappedBy="Video")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\OneToMany(targetEntity="TricksBundle\Entity\Video", mappedBy="tricks",  cascade={"persist", "remove"})
      */
     private $video;
 
     /**
-     * @ORM\OneToMany(targetEntity="TricksBundle\Entity\Image", mappedBy="Image")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\OneToMany(targetEntity="TricksBundle\Entity\Image", mappedBy="tricks",  cascade={"persist", "remove"})
      */
     private $image;
 
@@ -245,4 +240,13 @@ class Tricks
     {
         return $this->video;
     }
+
+    /**
+     * Add image
+     *
+     * @param \TricksBundle\Entity\Image $image
+     *
+     * @return Tricks
+     */
+
 }

@@ -47,8 +47,8 @@ class Image
     private $updatedAt;
 
     /**
-     * @ORM\ManyToOne(targetEntity="TricksBundle\Entity\Tricks", inversedBy="Image")
-     * @ORM\JoinColumn(nullable=true, onDelete="CASCADE")
+     * @ORM\ManyToOne(targetEntity="TricksBundle\Entity\Tricks", inversedBy="image")
+     * @ORM\JoinColumn(nullable=true, name="tricks_id", referencedColumnName="id", onDelete="cascade")
      */
     private $tricks;
 

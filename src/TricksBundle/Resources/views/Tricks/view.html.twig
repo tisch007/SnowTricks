@@ -17,8 +17,13 @@
 
             </div>
             <div class="col-sm-4">
-                <img src="{{ asset('img/image1.jpg') }}" alt="image1" width="300" height="150"
-                     class="img-circle img-responsive">
+                {% if(listImage != null) %}
+                    <img src="{{ asset('uploads/img/' ~  listImage[0].imageName) }}" alt="{{ trick.title }}" width="300"
+                         height="150" class="img-circle img-responsive"/>
+                {% else %}
+                    <img src="{{ asset('img/image1.jpg') }}" alt="image1" width="300" height="150"
+                         class="img-circle img-responsive">
+                {% endif %}
             </div>
         </div>
         <br>
@@ -36,12 +41,12 @@
                                             frameborder="0" allowfullscreen></iframe>
                                     <img src="http://img.youtube.com/vi/{{ video.link }}/0.jpg"
                                          alt="{{ video.name }}"
-                                         title="{{ video.name }}" id="wows1_{{ i }}"/></li>
+                                            {#title="{{ video.name }}"#} id="wows1_{{ i }}"/></li>
                                 {% set i = i+1 %}
                             {% endfor %}
                             {% for image in listImage %}
-                                <li><img src="{{ asset('img/' ~  image.imageName) }}" alt="{{ image.imageName }}"
-                                         title="{{ image.imageName }}" id="wows1_{{ i }}"/></li>
+                                <li><img src="{{ asset('uploads/img/' ~  image.imageName) }}" alt="{{ trick.title }}"
+                                            {#title="{{ trick.title }}"#} id="wows1_{{ i }}"/></li>
                                 {% set i = i+1 %}
                             {% endfor %}
 
@@ -49,11 +54,11 @@
                                 <div>
                                     {% set i = 0 %}
                                     {% for video in listVideo %}
-                                        <a href="#" title="{{ video.name }}"><span>{{ i }}</span></a>
+                                        <a href="#"><span>{{ i }}</span></a>
                                         {% set i = i+1 %}
                                     {% endfor %}
                                     {% for image in listImage %}
-                                        <a href="#" title="{{ image.imageName }}"><span>{{ i }}</span></a>
+                                        <a href="#"><span>{{ i }}</span></a>
                                         {% set i = i+1 %}
                                     {% endfor %}
                                 </div>
@@ -89,12 +94,13 @@
                         <li class="panel-group list-unstyled">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    Rédigé par <strong>{{ comment.author }}</strong> le {{ comment.dateAjout|date('d/m/Y à H:i') }}
+                                    Rédigé par <strong>{{ comment.author }}</strong>
+                                    le {{ comment.dateAjout|date('d/m/Y à H:i') }}
                                 </div>
                                 <div class="panel-body">
                                     {{ comment.content }}
                                 </div>
-                             <div>
+                                <div>
                         </li>
                     {% endfor %}
                 </ul>
