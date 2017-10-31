@@ -7,16 +7,16 @@
                 {% if listTricks|length != 0 %}
                     <ul class="thumbnails list-unstyled">
                         {% for trick in listTricks %}
-                            <li class="col-md-4 col-sm-6 text-center">
+                            <li class="col-lg-4 col-sm-6 text-center">
                                 <div class="thumbnail">
                                     <div class="caption">
                                         <h4>{{ trick.title }}</h4>
 
                                         {% if(trick.image.first) %}
-                                            <img src="{{ asset('uploads/img/' ~  listImage[0].imageName) }}" alt="{{ trick.title }}" width="300"
-                                                 height="150" class="img-responsive center-block"/>
+                                            <img src="{{ asset('uploads/img/' ~  trick.image.first.imageName) }}" alt="{{ trick.title }}" width="300"
+                                                 height="150" />
                                         {% else %}
-                                            <img src="{{ asset('img/image1.jpg') }}" alt="image1" width="300" height="150" class="img-responsive center-block">
+                                            <img src="{{ asset('img/image1.jpg') }}" alt="image1" width="300" height="150">
                                         {% endif %}
 
                                         <p><em>Ajouté par <strong>{{ trick.author }}</strong>

@@ -141,6 +141,12 @@ class TricksController extends Controller
             }
 
 
+            if ($trick->getImage() != null) {
+                foreach ($trick->getImage() as $image) {
+                    $image->setImageName($trick->getTitle());
+                    $image->setTricks($trick);
+                }
+            }
 
             $em->persist($trick);
             $em->flush();
