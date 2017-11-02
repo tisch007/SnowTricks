@@ -12,12 +12,8 @@ namespace TricksBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use TricksBundle\Entity\Tricks;
 use TricksBundle\Entity\Comment;
-use TricksBundle\Entity\Video;
-use TricksBundle\Entity\Image;
 use TricksBundle\Form\TricksType;
 use TricksBundle\Form\CommentType;
-use TricksBundle\Form\VideoType;
-use TricksBundle\Form\ImageType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -36,6 +32,11 @@ class TricksController extends Controller
 
     public function viewAction($id, Request $request)
     {
+        //utilisateur images
+        $repository = $this->getDoctrine()->getManager()->getRepository('UserBundle:Image');
+        $usersImages = $repository->findAll();
+
+
         //tricks
         $repository = $this->getDoctrine()->getManager()->getRepository('TricksBundle:Tricks');
         $trick = $repository->Find($id);
@@ -80,12 +81,14 @@ class TricksController extends Controller
             'listComment' => $listComment,
             'formComment' => $formComment->createView(),
             'listVideo' => $listVideo,
-            'listImage' => $listImage
+            'listImage' => $listImage,
+            'usersImages' => $usersImages
         ));
     }
 
     public function addAction(Request $request)
     {
+
         //tricks
         $trick = new tricks();
         $formBuilder = $this->get('form.factory')->createBuilder(TricksType::class, $trick);
@@ -93,11 +96,18 @@ class TricksController extends Controller
 
         if ($request->isMethod('POST') && $formTrick->handleRequest($request)->isValid()) {
             $trick->setDateAjout(new \DateTime());
+            $trick->setAuthor($this->get('security.token_storage')->getToken()->getUser()->getUsername());
             $trick = $formTrick->getData();
-            foreach ($trick->getVideo() as $video) {
-                $video->setName($trick->getTitle());
-                $video->setTricks($trick);
+
+            foreach ($trick->getVideo() as $k => $video) {
+                if ($video->getLink() == null) {
+                    unset($trick->getVideo()[$k]);
+                } else {
+                    $video->setName($trick->getTitle());
+                    $video->setTricks($trick);
+                }
             }
+
             if ($trick->getImage() != null) {
                 foreach ($trick->getImage() as $image) {
                     $image->setImageName($trick->getTitle());
@@ -135,9 +145,15 @@ class TricksController extends Controller
             }
             $trick->setDateAjout(new \DateTime());
             $trick = $form->getData();
-            foreach ($trick->getVideo() as $video) {
-                $video->setName($trick->getTitle());
-                $video->setTricks($trick);
+
+
+            foreach ($trick->getVideo() as $k => $video) {
+                if ($video->getLink() == null) {
+                    unset($trick->getVideo()[$k]);
+                } else {
+                    $video->setName($trick->getTitle());
+                    $video->setTricks($trick);
+                }
             }
 
 

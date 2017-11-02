@@ -1,5 +1,5 @@
 <?php
-// src/TricksBundle/Entity/AdvertRepository.php
+// src/TricksBundle/Entity/TricksRepository.php
 
 namespace TricksBundle\Repository;
 

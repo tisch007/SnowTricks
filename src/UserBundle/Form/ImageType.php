@@ -1,12 +1,11 @@
 <?php
 
-namespace TricksBundle\Form;
+namespace UserBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Vich\UploaderBundle\Form\Type\VichImageType;
-
 class ImageType extends AbstractType
 {
     /**
@@ -22,14 +21,14 @@ class ImageType extends AbstractType
             ]);
 
     }
-
+    
     /**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'TricksBundle\Entity\Image'
+            'data_class' => 'UserBundle\Entity\Image'
         ));
     }
 
@@ -38,7 +37,7 @@ class ImageType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'tricksbundle_image';
+        return 'userbundle_image';
     }
 
 

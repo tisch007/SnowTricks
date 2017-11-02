@@ -4,6 +4,7 @@ namespace TricksBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Tricks
  *
@@ -29,6 +30,7 @@ class Tricks
      * @var string
      *
      * @ORM\Column(name="title", type="string", length=255, unique=true)
+     * @Assert\NotBlank(message="Ce champ doit être renseigné.")
      */
     private $title;
 
@@ -36,6 +38,7 @@ class Tricks
      * @var string
      *
      * @ORM\Column(name="content", type="text")
+     * @Assert\NotBlank(message="Ce champ doit être renseigné.")
      */
     private $content;
 

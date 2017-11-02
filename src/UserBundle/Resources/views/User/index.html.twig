@@ -1,5 +1,35 @@
-{% extends "base.html.twig" %}
+{% extends "@FOSUser/layout.html.twig" %}
 
-{% block body %}
-    <h2>Page de connection</h2>
-{% endblock %}
+{% block fos_user_content %}
+
+    {% trans_default_domain 'FOSUserBundle' %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3">
+                {% include 'UserBundle:User:modulesUsed/utilisateursConnecte.html.twig' %}
+            </div>
+            <div class="col-sm-6">
+                <h2>Mes informations</h2>
+                <div id="collapseOne" class="accordion-body collapse in">
+                    <div class="accordion-inner">
+                        <div class="span4">
+                            <p>{{ 'profile.show.username'|trans }}: {{ user.username }}</p>
+                            <p>{{ 'profile.show.email'|trans }}: {{ user.email }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                {% if not userImages is empty %}
+                    <div class="panel text-center">
+                        <img src="{{ asset('uploads/avatar/' ~  userImages[0].imageName) }}"
+                             alt="Avatar de L'utilisateur" width="200"
+                             height="200"/>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+{% endblock fos_user_content %}

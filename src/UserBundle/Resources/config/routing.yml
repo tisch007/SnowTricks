@@ -1,3 +1,8 @@
-user_homepage:
-    path:     /connexion
+user_profil:
+    path:     /profil
     defaults: { _controller: UserBundle:User:index }
+
+user_add_image:
+    path:     /image
+    defaults: { _controller: UserBundle:User:addImage }
+

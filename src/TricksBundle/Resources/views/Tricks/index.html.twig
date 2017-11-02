@@ -2,6 +2,18 @@
 
 {% block body %}
     <div class="container">
+
+        <img src="{{ asset('img/image.png') }}" alt="Snowtricks"
+             class="center-block img-rounded img-responsive"
+             style="margin-top: 15px">
+        <div class="text-center">
+            <div class="jumbotron">
+                <p><em>Le freestyle, c’est hyper fun, et dès les premiers jumps on peut se faire plaisir ! Pour débuter,
+                        progresser rapidement puis apprendre à faire ses premières rotations, voici quelques tricks
+                        tips. </em>
+                </p>
+            </div>
+        </div>
         <div class="row">
             <div class="col-lg-12">
                 {% if listTricks|length != 0 %}
@@ -10,13 +22,16 @@
                             <li class="col-lg-4 col-sm-6 text-center">
                                 <div class="thumbnail">
                                     <div class="caption">
-                                        <h4>{{ trick.title }}</h4>
+                                        <a href="{{ path('tricks_view', { 'id' : trick.id }) }}" style="color: black;  text-decoration: none;">
+                                            <h3>{{ trick.title }}</h3></a>
 
                                         {% if(trick.image.first) %}
-                                            <img src="{{ asset('uploads/img/' ~  trick.image.first.imageName) }}" alt="{{ trick.title }}" width="300"
-                                                 height="150" />
+                                            <img src="{{ asset('uploads/img/' ~  trick.image.first.imageName) }}"
+                                                 alt="{{ trick.title }}" width="300"
+                                                 height="150"/>
                                         {% else %}
-                                            <img src="{{ asset('img/image1.jpg') }}" alt="image1" width="300" height="150">
+                                            <img src="{{ asset('img/image1.jpg') }}" alt="image1" width="300"
+                                                 height="150">
                                         {% endif %}
 
                                         <p><em>Ajouté par <strong>{{ trick.author }}</strong>

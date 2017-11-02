@@ -12,3 +12,7 @@ footer {
     display : table-row;
     height: 100px; /* à titre d'exemple */
 }
+
+.commentaireHead{
+    background-color: grey;
+}

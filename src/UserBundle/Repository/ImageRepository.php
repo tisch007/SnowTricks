@@ -1,6 +1,7 @@
 <?php
-// src/TricksBundle/Entity/ImageRepository.php
-namespace TricksBundle\Repository;
+// src/UserBundle/Entity/ImageRepository.php
+
+namespace UserBundle\Repository;
 
 /**
  * ImageRepository

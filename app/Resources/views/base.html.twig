@@ -33,7 +33,7 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                    <li><a href="{{ path('fos_user_profile_show') }}"><span
+                    <li><a href="{{ path('user_profil') }}"><span
                                     class="glyphicon glyphicon-user"></span>&nbspProfil</a></li>
                     <li><a href="{{ path('fos_user_security_logout') }}"><span
                                     class="glyphicon glyphicon-log-out"></span>&nbspDéconnexion</a></li>
@@ -49,15 +49,6 @@
     </div>
 </nav>
 
-<a href="{{ path('tricks_homepage') }}"><img src="{{ asset('img/image.png') }}" alt="Snowtricks"
-                                             class="center-block img-rounded img-responsive"
-                                             style="margin-top: 15px"></a>
-<div class="container text-center">
-    <div class="jumbotron">
-        <p><em>Le freestyle, c’est hyper fun, et dès les premiers jumps on peut se faire plaisir ! Pour débuter,
-                progresser rapidement puis apprendre à faire ses premières rotations, voici quelques tricks tips. </em>
-        </p>
-    </div>
     {% if app.request.hasPreviousSession %}
         {% for type, messages in app.session.flashbag.all() %}
             {% for message in messages %}
