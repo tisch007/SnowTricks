@@ -89,6 +89,55 @@
             {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                 {% include 'TricksBundle:form:commentForm.html.twig' %}
             {% endif %}
+            <div class="pagerfanta col-md-offset-1">
+                {{ pagerfanta(my_pager, 'twitter_bootstrap3') }}
+            </div>
+            <ul>
+                {% for item in my_pager.currentPageResults %}
+                    <li class="list-unstyled">
+                        <div class="row well-small">
+                            <div class="col-sm-1 hidden-sm hidden-xs" style="margin-right: 2em">
+                                {% if not usersImages is empty %}
+                                    {% set i = 0 %}
+                                    {% for image in usersImages %}
+                                        {% if image.user.username == item.author %}
+                                            {% set i = 1 %}
+                                            <img src="{{ asset('uploads/avatar/' ~  image.imageName) }}"
+                                                 alt="Avatar de L'utilisateur" width="90" height="90" class="img-rounded"/>
+                                        {% endif %}
+                                    {% endfor %}
+                                    {% if i == 0 %}
+                                        <img src="{{ asset('img/img_profil.png') }}" alt="Avatar de L'utilisateur"
+                                             width="90" height="90"/>
+                                    {% endif %}
+                                {% else %}
+                                    <img src="{{ asset('img/img_profil.png') }}" alt="Avatar de L'utilisateur"
+                                         width="90" height="90"/>
+                                {% endif %}
+                            </div>
+                            <div class="col-sm-10">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading ">
+                                        Rédigé par <strong>{{ item.author }}</strong>
+                                        le {{ item.dateAjout|date('d/m/Y à H:i') }}
+                                    </div>
+                                    <div class="panel-body">
+                                        {{ item.content }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+            <div class="pagerfanta col-md-offset-1">
+                {{ pagerfanta(my_pager, 'twitter_bootstrap3') }}
+            </div>
+
+            {#
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                {% include 'TricksBundle:form:commentForm.html.twig' %}
+            {% endif %}
             <ul>
                 {% for comment in listComment %}
                 <li class="list-unstyled">
@@ -127,6 +176,7 @@
                 </li>
                 {% endfor %}
             </ul>
+            #}
         </div>
     </div>
 </div>

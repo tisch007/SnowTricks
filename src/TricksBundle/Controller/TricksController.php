@@ -16,6 +16,10 @@ use TricksBundle\Form\TricksType;
 use TricksBundle\Form\CommentType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Pagerfanta\Adapter\DoctrineORMAdapter;
+
+use Pagerfanta\Adapter\ArrayAdapter;
+use Pagerfanta\Pagerfanta;
 
 class TricksController extends Controller
 {
@@ -32,6 +36,16 @@ class TricksController extends Controller
 
     public function viewAction($id, Request $request)
     {
+        $em = $this->getDoctrine()->getManager();
+        //systeme de pagination
+        $queryBuilder = $em->createQueryBuilder()
+            ->select('u')
+            ->from('TricksBundle:Comment', 'u')
+            ->andWhere('u.tricks = :searchTerm')
+            ->setParameter('searchTerm', $id);
+        $adapter = new DoctrineORMAdapter($queryBuilder);
+        $pagerfanta = new Pagerfanta($adapter);
+
         //utilisateur images
         $repository = $this->getDoctrine()->getManager()->getRepository('UserBundle:Image');
         $usersImages = $repository->findAll();
@@ -68,7 +82,9 @@ class TricksController extends Controller
             $comment->setAuthor($this->get('security.token_storage')->getToken()->getUser()->getUsername());
             $comment->setDateAjout(new \DateTime());
             $comment->setTricks($trick);
-            $em = $this->getDoctrine()->getManager();
+            foreach ($listVideo as $video) {
+                $video->setLink('https://www.youtube.com/watch?v=' . $video->getLink());
+            }
             $em->persist($comment);
             $em->flush();
             $request->getSession()->getFlashBag()->add('notice', 'Commentaire bien enregistrée.');
@@ -82,7 +98,8 @@ class TricksController extends Controller
             'formComment' => $formComment->createView(),
             'listVideo' => $listVideo,
             'listImage' => $listImage,
-            'usersImages' => $usersImages
+            'usersImages' => $usersImages,
+            'my_pager' => $pagerfanta,
         ));
     }
 
