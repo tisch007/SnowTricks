@@ -22,4 +22,4 @@ tricks_view:
 
 fileUpload:
   path:       server/php/
-  defaults: { _controller: web/js/fileUpload/server/php/index.php  }
+  defaults: { _controller: web/js/fileUpload/server/php/index.php }

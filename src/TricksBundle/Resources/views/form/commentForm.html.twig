@@ -1,30 +1,23 @@
-{#
 <div class="well">
-    {{ form(formComment) }}
-</div>
-#}
-
-
-    <div class="well">
-        {{ form_start(formComment, {'attr': {'novalidate': 'novalidate', 'class': 'form-horizontal'}}) }}
-        {{ form_errors(formComment) }}
-        <fieldset>
-            <div class="form-group">
-                <div class="row">
-                    <div class="col-md-offset-1 col-sm-10">
-                        {{ form_widget(formComment.content, {'attr': {'class': 'form-control'}}) }}
-                        <br>
-                    </div>
-                    <div class="col-md-offset-10 col-sm-2">
-                        <button class="btn btn-primary" type="submit">Envoyer</button>
-                    </div>
-                    <div class="col-md-9 col-md-offset-3">
-                        {{ form_errors(formComment.content) }}
-                    </div>
+    {{ form_start(formComment, {'attr': {'novalidate': 'novalidate', 'class': 'form-horizontal'}}) }}
+    {{ form_errors(formComment) }}
+    <fieldset>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-offset-1 col-sm-10">
+                    {{ form_widget(formComment.content, {'attr': {'class': 'form-control'}}) }}
+                    <br>
+                </div>
+                <div class="col-md-offset-10 col-sm-2">
+                    <button class="btn btn-primary" type="submit">Envoyer</button>
+                </div>
+                <div class="col-md-9 col-md-offset-3">
+                    {{ form_errors(formComment.content) }}
                 </div>
             </div>
-        </fieldset>
-        {{ form_end(formComment) }}
-    </div>
+        </div>
+    </fieldset>
+    {{ form_end(formComment) }}
+</div>
 
 </div>

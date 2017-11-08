@@ -16,10 +16,11 @@ use TricksBundle\Form\TricksType;
 use TricksBundle\Form\CommentType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Pagerfanta\Adapter\DoctrineORMAdapter;
 
-use Pagerfanta\Adapter\ArrayAdapter;
+
+use Pagerfanta\Adapter\DoctrineORMAdapter;
 use Pagerfanta\Pagerfanta;
+use Pagerfanta\Exception\NotValidCurrentPageException;
 
 class TricksController extends Controller
 {
@@ -45,6 +46,18 @@ class TricksController extends Controller
             ->setParameter('searchTerm', $id);
         $adapter = new DoctrineORMAdapter($queryBuilder);
         $pagerfanta = new Pagerfanta($adapter);
+        $haveToPaginate = $pagerfanta->haveToPaginate();
+
+        try {
+            if (isset($_GET["page"])) {
+                $page = $_GET["page"];
+                $pagerfanta->setCurrentPage($page);
+            } else {
+                $pagerfanta->setCurrentPage(1);
+            }
+        } catch (NotValidCurrentPageException $e) {
+            throw new NotFoundHttpException();
+        }
 
         //utilisateur images
         $repository = $this->getDoctrine()->getManager()->getRepository('UserBundle:Image');
@@ -100,6 +113,7 @@ class TricksController extends Controller
             'listImage' => $listImage,
             'usersImages' => $usersImages,
             'my_pager' => $pagerfanta,
+            'haveToPaginate' => $haveToPaginate,
         ));
     }
 
