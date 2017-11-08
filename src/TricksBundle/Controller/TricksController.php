@@ -161,6 +161,9 @@ class TricksController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $trick = $em->getRepository('TricksBundle:Tricks')->find($id);
+        //image
+        $repository = $this->getDoctrine()->getManager()->getRepository('TricksBundle:Image');
+        $listImage = $repository->findByTricks($id);
 
         if (null === $trick) {
             throw new NotFoundHttpException("Le trick d'id " . $id . " n'existe pas.");
@@ -176,8 +179,6 @@ class TricksController extends Controller
             }
             $trick->setDateAjout(new \DateTime());
             $trick = $form->getData();
-
-
             foreach ($trick->getVideo() as $k => $video) {
                 if ($video->getLink() == null) {
                     unset($trick->getVideo()[$k]);
@@ -186,15 +187,12 @@ class TricksController extends Controller
                     $video->setTricks($trick);
                 }
             }
-
-
             if ($trick->getImage() != null) {
                 foreach ($trick->getImage() as $image) {
                     $image->setImageName($trick->getTitle());
                     $image->setTricks($trick);
                 }
             }
-
             $em->persist($trick);
             $em->flush();
             $request->getSession()->getFlashBag()->add('notice', 'La figure a été modifiée.');
@@ -203,7 +201,8 @@ class TricksController extends Controller
 
         return $this->render('TricksBundle:Tricks:edit.html.twig', array(
             'trick' => $trick,
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'listImage' => $listImage
         ));
     }
 

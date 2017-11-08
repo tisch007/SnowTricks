@@ -4,11 +4,7 @@
             {{ form_start(form, {'attr': {'novalidate': 'novalidate', 'class': 'form-horizontal'}}) }}
             {{ form_errors(form) }}
             <fieldset>
-                {% if trick is defined %}
-                    <legend>Modifier la figure</legend>
-                {% else %}
-                    <legend>Nouvelle figure</legend>
-                {% endif %}
+                <legend>Modifier la figure</legend>
 
                 <div class="form-group">
                     {{ form_label(form.title, 'Nom de la figure', {'label_attr': {'class': 'col-md-3 control-label'}}) }}
@@ -53,7 +49,30 @@
                         {{ _self.information_prototype(video) }}
                     {% endfor %}
                 </div>
-               {% macro information_prototype2(image) %}
+
+                {% if listImage is not empty %}
+                    <div id="image" class="form-group">
+
+                        {% for image in listImage %}
+                            <div class="row">
+                                {{ form_label(form.image, 'Image', {'label_attr': {'class': 'col-md-3 control-label'}}) }}
+                                <div class="col-md-7" style="max-width: 420px; margin-left: 10px;">
+                                    <img src="{{ asset('uploads/img/' ~  image.imageName) }}" alt="{{ trick.title }}"
+                                         class="img-responsive"/>
+                                </div>
+
+                                <a href="#" class="btn btn-danger">Supprimer</a>
+                            </div>
+                            <br>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+
+
+
+
+                {% macro information_prototype2(image) %}
                     <div class="form-group">
                         {{ form_label(image, 'Image', {'label_attr': {'class': 'col-md-3 control-label'}}) }}
                         <div class="col-md-7">
@@ -91,6 +110,9 @@
 <script type="text/javascript">
 
     $(document).ready(function () {
+
+
+
         // On récupère la balise <div> en question qui contient l'attribut « data-prototype » qui nous intéresse.
         var $container = $('div#videoAdd');
         // On définit un compteur unique pour nommer les champs qu'on va ajouter dynamiquement
@@ -137,6 +159,7 @@
                 addDeleteLink($(this));
                 for (var i = 0; i < index2; i++) {
                     $('#tricksbundle_tricks_image_' + (index2 - index2 + i) + '_link').addClass("form-control");
+                    $('#imageAdd div').css("display", "none")
                 }
             });
         }
@@ -174,7 +197,6 @@
 
             // On crée un objet jquery qui contient ce template
             var $prototype2 = $(template2);
-            console.log(template2);
             // On ajoute au prototype un lien pour pouvoir supprimer la catégorie
             addDeleteLink($prototype2);
             // On ajoute le prototype modifié à la fin de la balise <div>
