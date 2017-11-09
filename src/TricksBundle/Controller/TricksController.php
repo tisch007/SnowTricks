@@ -16,8 +16,6 @@ use TricksBundle\Form\TricksType;
 use TricksBundle\Form\CommentType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-
-
 use Pagerfanta\Adapter\DoctrineORMAdapter;
 use Pagerfanta\Pagerfanta;
 use Pagerfanta\Exception\NotValidCurrentPageException;
@@ -225,5 +223,15 @@ class TricksController extends Controller
         return $this->render('TricksBundle:Tricks:delete.html.twig', array(
             'trick' => $trick,
             'form' => $form->createView()));
+    }
+
+    public function ajaxAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $img = $em->getRepository('TricksBundle:Image')->find($id);
+        $em->remove($img);
+        $em->flush();
+
+        return $this->render('TricksBundle:Tricks:ajax.html.twig');
     }
 }

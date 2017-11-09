@@ -127,4 +127,10 @@ class Image
     {
         return $this->tricks;
     }
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
 }

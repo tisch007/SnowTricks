@@ -23,3 +23,7 @@ tricks_view:
 fileUpload:
   path:       server/php/
   defaults: { _controller: web/js/fileUpload/server/php/index.php }
+
+ajax:
+  path:       ajax/{id}
+  defaults: { _controller: TricksBundle:Tricks:ajax }

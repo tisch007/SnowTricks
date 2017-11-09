@@ -39,14 +39,11 @@
                                     <iframe width="100%" height="100%"
                                             src="https://www.youtube.com/embed/{{ video.link }}?autoplay=0&rel=0&enablejsapi=1&playerapiid=ytplayer&wmode=transparent"
                                             frameborder="0" allowfullscreen></iframe>
-                                    <img src="http://img.youtube.com/vi/{{ video.link }}/0.jpg"
-                                         alt="{{ video.name }}"
-                                            {#title="{{ video.name }}"#} id="wows1_{{ i }}"/></li>
+                                    <img src="http://img.youtube.com/vi/{{ video.link }}/0.jpg" alt="{{ video.name }}" id="wows1_{{ i }}"/></li>
                                 {% set i = i+1 %}
                             {% endfor %}
                             {% for image in listImage %}
-                                <li><img src="{{ asset('uploads/img/' ~  image.imageName) }}" alt="{{ trick.title }}"
-                                            {#title="{{ trick.title }}"#} id="wows1_{{ i }}"/></li>
+                                <li><img src="{{ asset('uploads/img/' ~  image.imageName) }}" alt="{{ trick.title }}" id="wows1_{{ i }}"/></li>
                                 {% set i = i+1 %}
                             {% endfor %}
 
