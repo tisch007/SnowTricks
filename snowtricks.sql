@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Mar 31 Octobre 2017 à 16:42
+-- Généré le :  Jeu 09 Novembre 2017 à 13:43
 -- Version du serveur :  5.7.14
 -- Version de PHP :  7.0.10
 
@@ -36,8 +36,13 @@ CREATE TABLE `category` (
 --
 
 INSERT INTO `category` (`id`, `name`) VALUES
-(1, 'jump'),
-(2, 'rotation');
+(1, 'slides'),
+(2, 'rotations'),
+(3, 'grabs'),
+(4, 'flips'),
+(5, 'rotations désaxées'),
+(6, 'one foot tricks'),
+(7, 'old school');
 
 -- --------------------------------------------------------
 
@@ -66,7 +71,15 @@ INSERT INTO `comment` (`id`, `author`, `content`, `dateAjout`, `tricks_id`) VALU
 (17, 'tisch', '3 eme commentaire', '2017-10-24 15:03:55', 1),
 (18, 'tisch', '4 eme commentaire', '2017-10-24 15:04:10', 1),
 (24, 'tisch', 'sdfsdfdsf', '2017-10-30 12:33:57', 6),
-(25, 'tisch', 'drgdrgdrg', '2017-10-30 12:34:26', 6);
+(25, 'tisch', 'drgdrgdrg', '2017-10-30 12:34:26', 6),
+(26, 'yopi', 'j\'en est déjà réussit un!', '2017-11-02 11:34:49', 1),
+(27, 'yopi', 'j\'adore celle-ci', '2017-11-02 11:36:20', 2),
+(28, 'tisch', '6 eme commentaire', '2017-11-05 10:10:15', 1),
+(29, 'tisch', '7 eme commentaire', '2017-11-05 10:11:37', 1),
+(30, 'tisch', '8 eme commentaire', '2017-11-05 10:15:15', 1),
+(31, 'tisch', '9 eme commentaire', '2017-11-05 10:15:25', 1),
+(32, 'tisch', '10 eme commentaire', '2017-11-05 10:15:37', 1),
+(33, 'tisch', '11 eme commentaire', '2017-11-05 10:15:48', 1);
 
 -- --------------------------------------------------------
 
@@ -94,12 +107,14 @@ CREATE TABLE `fos_user` (
 --
 
 INSERT INTO `fos_user` (`id`, `username`, `username_canonical`, `email`, `email_canonical`, `enabled`, `salt`, `password`, `last_login`, `confirmation_token`, `password_requested_at`, `roles`) VALUES
-(1, 'tisch', 'tisch', 'cyrille.tischenbach@gmail.com', 'cyrille.tischenbach@gmail.com', 1, NULL, '$2y$13$ES.ZVnCLv.M6Mrg8MpZyqO0iRNe.MH3sVHKjvam/I537m9Am.Mx.G', '2017-10-30 12:49:24', NULL, NULL, 'a:1:{i:0;s:10:"ROLE_ADMIN";}'),
+(1, 'tisch', 'tisch', 'cyrille.tischenbach@gmail.com', 'cyrille.tischenbach@gmail.com', 1, NULL, '$2y$13$ES.ZVnCLv.M6Mrg8MpZyqO0iRNe.MH3sVHKjvam/I537m9Am.Mx.G', '2017-11-09 10:56:15', NULL, NULL, 'a:1:{i:0;s:10:"ROLE_ADMIN";}'),
 (2, 'bob', 'bob', 'bob@gmail.com', 'bob@gmail.com', 1, NULL, '$2y$13$RUqqmDy0oz3deAp/7TZkauEWWLA8rRuDctk2/Sf2U5tbgAa4pfYL.', NULL, NULL, NULL, 'a:0:{}'),
 (3, 'toto', 'toto', 'toto@gmail.com', 'toto@gmail.com', 1, NULL, '$2y$13$6ssDYX0/L5zDrhUGHPcdQeoFt1sfzuY1gsj2ra7kHGf85pvetx4cm', '2017-10-19 15:44:18', NULL, NULL, 'a:0:{}'),
 (4, 'lol', 'lol', 'lolo@gmail.com', 'lolo@gmail.com', 1, NULL, '$2y$13$nylw0FL9CYOB4zP8qZq9g.qzKDTqxYj56rrI.fS3bLAE/LtReH0DW', '2017-10-19 15:47:56', NULL, NULL, 'a:0:{}'),
 (5, 'llii', 'llii', 'lllii@gmail.com', 'lllii@gmail.com', 1, NULL, '$2y$13$j5m5Pu870fQRoNjCenQGLefCd/PpMHTmtm.IHH2CFbMdi6E/wACZy', '2017-10-19 16:56:00', NULL, NULL, 'a:0:{}'),
-(6, 'juju', 'juju', 'julie@gmail.com', 'julie@gmail.com', 1, NULL, '$2y$13$eWJEzQDf2EOxFbmdb6syyuG4NxbWpgbBW30TaaNwOv24I/Cgev/xe', '2017-10-21 14:58:11', NULL, NULL, 'a:0:{}');
+(6, 'juju', 'juju', 'julie@gmail.com', 'julie@gmail.com', 1, NULL, '$2y$13$eWJEzQDf2EOxFbmdb6syyuG4NxbWpgbBW30TaaNwOv24I/Cgev/xe', '2017-11-02 10:39:09', NULL, NULL, 'a:0:{}'),
+(7, 'yopi', 'yopi', 'sfxdf@gmaill.com', 'sfxdf@gmaill.com', 1, NULL, '$2y$13$V86ZChZIrZifyJb0SmfgaerQ/dmsN31moOw8.YutJ7.u876Qg.0ya', '2017-11-02 11:32:04', NULL, NULL, 'a:0:{}'),
+(8, 'rene', 'rene', 'yhgyjh@gmail.com', 'yhgyjh@gmail.com', 1, NULL, '$2y$13$JvsewdcRFHrqkMdgysd4Pu9fQt3co0m..v2TM/2IKCWC0Xe99JwYS', '2017-11-08 10:33:25', 'DxC-fOw7_qax-NxuEc2NsTyayWiY_GOGjd90LtTVO1Q', '2017-11-08 10:40:18', 'a:0:{}');
 
 -- --------------------------------------------------------
 
@@ -128,7 +143,12 @@ INSERT INTO `image` (`id`, `tricks_id`, `image_name`, `updated_at`) VALUES
 (16, 5, '59f8a3ef555f6.jpg', '2017-10-31 16:25:19'),
 (17, 5, '59f8a3ef56256.jpg', '2017-10-31 16:25:19'),
 (18, 6, '59f8a432b40e3.jpg', '2017-10-31 16:26:26'),
-(19, 6, '59f8a432b4fdc.jpg', '2017-10-31 16:26:26');
+(19, 6, '59f8a432b4fdc.jpg', '2017-10-31 16:26:26'),
+(28, 10, '5a045134c18b7.jpg', '2017-11-09 12:59:32'),
+(29, 11, '5a0452550fc72.jpg', '2017-11-09 13:04:21'),
+(30, 12, '5a0453d83fc0e.jpg', '2017-11-09 13:10:48'),
+(31, 13, '5a0454c706f0a.jpg', '2017-11-09 13:14:47'),
+(32, 14, '5a0455af74d5d.jpg', '2017-11-09 13:18:39');
 
 -- --------------------------------------------------------
 
@@ -155,13 +175,34 @@ INSERT INTO `tricks` (`id`, `title`, `content`, `author`, `dateAjout`, `category
 (3, 'Double Backflip One Foot', 'Comme on peut le deviner, les "one foot" sont des figures réalisées avec un pied décroché de la fixation. Pendant le saut, le snowboarder doit tendre la jambe du côté dudit pied. L\'esthète Scotty Vine – une sorte de Danny MacAskill du snowboard – en a réalisé un bel exemple avec son Double Backflip One Foot.', 'bob', '2017-10-31 16:23:41', 2),
 (5, 'Double Mc Twist 1260', 'Le Mc Twist est un flip (rotation verticale) agrémenté d\'une vrille. Un saut très périlleux réservé aux professionnels. Le champion précoce Shaun White s\'est illustré par un Double Mc Twist 1260 lors de sa session de Half-Pipe aux Jeux Olympiques de Vancouver en 2010. Nul doute que c\'est cette figure qui lui a valu de remporter la médaille d\'or.', 'bob', '2017-10-31 16:25:19', 1),
 (6, 'Double Backside Rodeo 1080', 'À l\'instar du cork, le rodeo est une rotation désaxée, qui se reconnaît par son aspect vrillé. Un des plus beaux de l\'histoire est sans aucun doute le Double Backside Rodeo 1080 effectué pour la première fois en compétition par le jeune prodige Travis Rice, lors du Icer Air 2007. La pirouette est tellement culte qu\'elle a fini dans un jeu vidéo où Travis Rice est l\'un des personnages.', 'tisch', '2017-10-31 16:26:26', 1),
-(50, 'dgdrgdgr', 'drgdrgrgfxfg', 'drgdrgdgr', '2017-10-30 15:16:03', 2),
-(51, 'bvcfr', 'bcfbcfb', 'bcfbcf', '2017-10-30 17:47:21', 1),
-(52, 'fesef', 'sefseff', 'sefserf', '2017-10-30 15:24:18', 1),
-(54, 'fefesfs', 'sefsef', 'sefesf', '2017-10-30 15:38:38', 1),
-(60, 'rgdg', 'drgdrg', 'drgdrgdrg', '2017-10-30 23:53:21', 1),
-(61, 'grdg', 'drgdrgdrgngfn', 'drgdrg', '2017-10-30 23:55:59', 1),
-(68, 'vcdxv', 'xdvdxv', 'xdvxdv', '2017-10-31 00:09:49', 1);
+(10, 'Frontside Nose-roll Nollie 360\'s', 'Celui-ci est super fun à faire. Et mate ça, tu peux faire des front 7s sur un saut de même pas 2 mètres ! #WTF !\r\n\r\n “Essaie de le visualiser dans ton esprit avant de le faire (le contrôle des carres et le mouvement du haut du corps), ça aide vraiment. “', 'tisch', '2017-11-09 13:01:52', 2),
+(11, 'Tripods', 'Un trick fondamental pour passer le temps sur une piste \r\n\r\n“Balance un gros carve sur les orteils en remontant la pente. Quand tu commences à manquer de vitesse, mets ton poids sur ton pied arrière. Quand tu t’arrêtes complètement, transfère ton poids sur ton pied avant et pose délicatement tes mains sur le sol.”', 'tisch', '2017-11-09 13:04:21', 7),
+(12, 'Nollie Backside 180s', 'Les nollies backside 180 ne sont pas vraiment des tricks de butter mais ils sont très utiles pour apprendre à faire des tricks plus techniques. En plus, la sensation est excellente.\r\n\r\nLe conseil de Ryan : “Place-toi sur un léger carve sur la carre front, puis, alors que pousse sur le nose pour envoyer un nollie, maintient la pression sur la carre frontside. Quand tu redescends, il faut atterrir sur la carre frontside pour éviter de faire une faute de carre.”', 'tisch', '2017-11-09 13:10:48', 1),
+(13, 'Frontside Pretzels', 'Les Pretzels, c’est quand tu pivotes dans la direction opposée à la rotation initiale et c’est un concept qui peut se transposer sur les rails quand tu le maîtrise bien sur la neige.\r\n\r\n“Tu devras très probablement mettre un petit coup de hanche pour finir la rotation sur 720 degrés.”', 'tisch', '2017-11-09 13:14:47', 2),
+(14, 'Frontside Nose-roll 540\'s', 'Frontside Nose-roll 540\'s\r\n\r\n “A partir d’un léger carve sur les talons, tu vas presser le nose de la planche sur les talons et puis basculer sur les orteils on pointant les orteils au moment du 180, puis tu reviens sur les talons au quand tu atteins les 360 degrés.”', 'tisch', '2017-11-09 13:18:39', 5),
+(15, 'bcghbcrfg', 'gcgcgcrgcg', 'tisch', '2017-11-09 13:22:16', 3),
+(16, 'sefsef', 'sefsefsef', 'tisch', '2017-11-09 13:24:34', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `user_image`
+--
+
+CREATE TABLE `user_image` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `image_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `updated_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Contenu de la table `user_image`
+--
+
+INSERT INTO `user_image` (`id`, `user_id`, `image_name`, `updated_at`) VALUES
+(19, 1, '59fb00fe22181.jpg', '2017-11-02 11:26:54'),
+(20, 7, '59fb0247a9a5e.png', '2017-11-02 11:32:23');
 
 -- --------------------------------------------------------
 
@@ -188,9 +229,13 @@ INSERT INTO `video` (`id`, `tricks_id`, `link`, `name`) VALUES
 (6, 6, 'https://www.youtube.com/watch?v=vquZvxGMJT0', 'Double Backside Rodeo 1080'),
 (7, 1, 'https://www.youtube.com/watch?v=URFnYGzu9lU', 'Backside Triple Cork 1440'),
 (8, 1, 'https://www.youtube.com/watch?v=Lh5-Gjh-y-M', 'Backside Triple Cork 1440'),
-(34, 50, 'https://www.youtube.com/watch?v=iSHzE2CKSfM', 'dgdrgdgr'),
-(37, 54, 'http://localhost/SnowTricks/web/app_dev.php/tricks/add', 'fefesfs'),
-(50, 68, 'https://www.youtube.com/watch?v=hH0lezY7lZ4', 'vcdxv');
+(14, 10, 'https://www.youtube.com/watch?v=bTGUwXBHJQc', 'Frontside Nose-roll Nollie 360\'s'),
+(15, 11, 'https://www.youtube.com/watch?v=tpgdsuSXYbw', 'Tripods'),
+(16, 12, 'https://www.youtube.com/watch?v=b1_PYAIckZk', 'Nollie Backside 180s'),
+(17, 13, 'https://www.youtube.com/watch?v=ppPzGk_RHg8', 'Frontside Pretzels'),
+(18, 14, 'https://www.youtube.com/watch?v=38IINv5Ggms', 'Frontside Nose-roll 540\'s'),
+(19, 15, 'https://www.youtube.com/watch?v=iSHzE2CKSfM', 'bcghbcrfg'),
+(21, 16, 'https://www.youtube.com/watch?v=uTho1AsbH2U', 'sefsef');
 
 --
 -- Index pour les tables exportées
@@ -234,6 +279,13 @@ ALTER TABLE `tricks`
   ADD KEY `IDX_E1D902C112469DE2` (`category_id`);
 
 --
+-- Index pour la table `user_image`
+--
+ALTER TABLE `user_image`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `UNIQ_27FFFF07A76ED395` (`user_id`);
+
+--
 -- Index pour la table `video`
 --
 ALTER TABLE `video`
@@ -248,32 +300,37 @@ ALTER TABLE `video`
 -- AUTO_INCREMENT pour la table `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT pour la table `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 --
 -- AUTO_INCREMENT pour la table `fos_user`
 --
 ALTER TABLE `fos_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT pour la table `image`
 --
 ALTER TABLE `image`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 --
 -- AUTO_INCREMENT pour la table `tricks`
 --
 ALTER TABLE `tricks`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+--
+-- AUTO_INCREMENT pour la table `user_image`
+--
+ALTER TABLE `user_image`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT pour la table `video`
 --
 ALTER TABLE `video`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 --
 -- Contraintes pour les tables exportées
 --
@@ -295,6 +352,12 @@ ALTER TABLE `image`
 --
 ALTER TABLE `tricks`
   ADD CONSTRAINT `FK_E1D902C112469DE2` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`);
+
+--
+-- Contraintes pour la table `user_image`
+--
+ALTER TABLE `user_image`
+  ADD CONSTRAINT `FK_27FFFF07A76ED395` FOREIGN KEY (`user_id`) REFERENCES `fos_user` (`id`) ON DELETE CASCADE;
 
 --
 -- Contraintes pour la table `video`
