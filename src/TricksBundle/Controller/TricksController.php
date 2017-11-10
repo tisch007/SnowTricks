@@ -131,7 +131,7 @@ class TricksController extends Controller
             $trick = $formTrick->getData();
 
             foreach ($trick->getVideo() as $k => $video) {
-                if ($video->getLink() == null) {
+                if ($video->getLink() === null) {
                     unset($trick->getVideo()[$k]);
                 } else {
                     $video->setName($trick->getTitle());
@@ -139,7 +139,7 @@ class TricksController extends Controller
                 }
             }
 
-            if ($trick->getImage() != null) {
+            if ($trick->getImage() !== null) {
                 foreach ($trick->getImage() as $image) {
                     $image->setImageName($trick->getTitle());
                     $image->setTricks($trick);
@@ -180,14 +180,14 @@ class TricksController extends Controller
             $trick->setDateAjout(new \DateTime());
             $trick = $form->getData();
             foreach ($trick->getVideo() as $k => $video) {
-                if ($video->getLink() == null) {
+                if ($video->getLink() === null) {
                     unset($trick->getVideo()[$k]);
                 } else {
                     $video->setName($trick->getTitle());
                     $video->setTricks($trick);
                 }
             }
-            if ($trick->getImage() != null) {
+            if ($trick->getImage() !== null) {
                 foreach ($trick->getImage() as $image) {
                     $image->setImageName($trick->getTitle());
                     $image->setTricks($trick);
@@ -211,7 +211,7 @@ class TricksController extends Controller
         $em = $this->getDoctrine()->getManager();
         $trick = $em->getRepository('TricksBundle:Tricks')->find($id);
 
-        if ($trick == null) {
+        if ($trick === null) {
             throw new NotFoundHttpException();
         }
         $form = $this->get('form.factory')->create();
