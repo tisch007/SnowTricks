@@ -33,12 +33,9 @@ class UserController extends Controller
         $formBuilder = $this->get('form.factory')->createBuilder(ImageType::class, $image);
         $form = $formBuilder->getForm();
 
-
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
-            var_dump($image);
 
-
-            if ($image->getImageFile() != null) {
+            if ($image->getImageFile() !== null) {
                 $image->setUser($user);
 
 
