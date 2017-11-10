@@ -10,6 +10,7 @@
 namespace TricksBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use TricksBundle\Entity\Tricks;
 use TricksBundle\Entity\Comment;
 use TricksBundle\Form\TricksType;
@@ -19,6 +20,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
 use Pagerfanta\Pagerfanta;
 use Pagerfanta\Exception\NotValidCurrentPageException;
+
 
 class TricksController extends Controller
 {
@@ -232,6 +234,8 @@ class TricksController extends Controller
         $em->remove($img);
         $em->flush();
 
-        return $this->render('TricksBundle:Tricks:ajax.html.twig');
+        $response = new JsonResponse();
+        $response->headers->set('Content-Type', 'application/json');
+        return new $response;
     }
 }
