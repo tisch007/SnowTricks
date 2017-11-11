@@ -31,5 +31,5 @@ Enfin, ajoutez les fixtures :
 
     php bin/console hautelook:fixtures:load
 
-Rendez vous ensuite sur : http://localhost/SnowTricks/web/app_dev.php/
+Rendez vous ensuite sur : localhost/SnowTricks/web/app_dev.php/
 ## Enjoy it !
