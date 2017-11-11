@@ -16,7 +16,7 @@ Pour ne pas qu'on se partage tous nos mots de passe, le fichier `app/config/para
 ## 3. Télécharger les vendors
 Avec Composer bien évidemment :
 
-    php composer update
+    composer update
 
 ## 4. Créez la base de données
 Si la base de données que vous avez renseignée dans l'étape 2 n'existe pas déjà, créez-la :
