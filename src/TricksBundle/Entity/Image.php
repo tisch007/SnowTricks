@@ -3,6 +3,7 @@
 namespace TricksBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Faker\Provider\DateTime;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\HttpFoundation\File\File;
 /**
@@ -118,6 +119,11 @@ class Image
         return $this;
     }
 
+    public function setUpdateAt(DateTime $updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+        return $this;
+    }
     /**
      * Get tricks
      *

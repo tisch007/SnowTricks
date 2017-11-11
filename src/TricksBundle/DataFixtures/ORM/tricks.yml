@@ -1,0 +1,71 @@
+TricksBundle\Entity\Tricks:
+    Cork:
+        title: "Backside Triple Cork 1440"
+        content: "En langage snowboard, un cork est une rotation horizontale plus ou moins désaxée, selon un mouvement d'épaules effectué juste au moment du saut. Le tout premier Triple Cork a été plaqué par Mark McMorris en 2011, lequel a récidivé lors des Winter X Games 2012... avant de se faire voler la vedette par Torstein Horgmo, lors de ce même championnat. Le Norvégien réalisa son propre Backside Triple Cork 1440 et obtint la note parfaite de 50/50."
+        author: "tisch"
+        dateAjout: <(new \DateTime('2017-10-31 16:20:09'))>
+        category: '@slides'
+
+    Method:
+        title: "Method Air"
+        content: "Cette figure – qui consiste à attraper sa planche d'une main et le tourner perpendiculairement au sol – est un classique \"old school\". Il n'empêche qu'il est indémodable, avec de vrais ambassadeurs comme Jamie Lynn ou la star Terje Haakonsen. En 2007, ce dernier a même battu le record du monde du \"air\" le plus haut en s'élevant à 9,8 mètres au-dessus du kick (sommet d'un mur d'une rampe ou autre structure de saut)."
+        author: "toto"
+        dateAjout: <(new \DateTime('2017-10-31 16:22:09'))>
+        category: '@grabs'
+
+    Backflip:
+        title: "Double Backflip One Foot"
+        content: "Comme on peut le deviner, les \"one foot\" sont des figures réalisées avec un pied décroché de la fixation. Pendant le saut, le snowboarder doit tendre la jambe du côté dudit pied. L'esthète Scotty Vine – une sorte de Danny MacAskill du snowboard – en a réalisé un bel exemple avec son Double Backflip One Foot."
+        author: "bob"
+        dateAjout: <(new \DateTime('2017-10-31 16:23:41'))>
+        category: '@grabs'
+
+    Twist:
+        title: "Double Mc Twist 1260"
+        content: "Le Mc Twist est un flip (rotation verticale) agrémenté d'une vrille. Un saut très périlleux réservé aux professionnels. Le champion précoce Shaun White s'est illustré par un Double Mc Twist 1260 lors de sa session de Half-Pipe aux Jeux Olympiques de Vancouver en 2010. Nul doute que c'est cette figure qui lui a valu de remporter la médaille d'or."
+        author: "bob"
+        dateAjout: <(new \DateTime('2017-10-31 16:25:19'))>
+        category: '@grabs'
+
+    Rodeo:
+        title: "Double Backside Rodeo 1080"
+        content: "À l'instar du cork, le rodeo est une rotation désaxée, qui se reconnaît par son aspect vrillé. Un des plus beaux de l'histoire est sans aucun doute le Double Backside Rodeo 1080 effectué pour la première fois en compétition par le jeune prodige Travis Rice, lors du Icer Air 2007. La pirouette est tellement culte qu'elle a fini dans un jeu vidéo où Travis Rice est l'un des personnages."
+        author: "tisch"
+        dateAjout: <(new \DateTime('2017-10-31 16:26:26'))>
+        category: '@rotations'
+
+    Nollie:
+        title: "Frontside Nose-roll Nollie 360's"
+        content: "Celui-ci est super fun à faire. Et mate ça, tu peux faire des front 7s sur un saut de même pas 2 mètres ! #WTF !\r\n\r\n “Essaie de le visualiser dans ton esprit avant de le faire (le contrôle des carres et le mouvement du haut du corps), ça aide vraiment. “"
+        author: "tisch"
+        dateAjout: <(new \DateTime('2017-11-09 13:01:52'))>
+        category: '@rotations'
+
+    Tripods:
+        title: "Tripods"
+        content: "Un trick fondamental pour passer le temps sur une piste \r\n\r\n“Balance un gros carve sur les orteils en remontant la pente. Quand tu commences à manquer de vitesse, mets ton poids sur ton pied arrière. Quand tu t’arrêtes complètement, transfère ton poids sur ton pied avant et pose délicatement tes mains sur le sol.”"
+        author: "tisch"
+        dateAjout: <(new \DateTime('2017-11-09 13:04:21'))>
+        category: '@rotations'
+
+    Backside:
+        title: "Nollie Backside 180s"
+        content: "Les nollies backside 180 ne sont pas vraiment des tricks de butter mais ils sont très utiles pour apprendre à faire des tricks plus techniques. En plus, la sensation est excellente.\r\n\r\nLe conseil de Ryan : “Place-toi sur un léger carve sur la carre front, puis, alors que pousse sur le nose pour envoyer un nollie, maintient la pression sur la carre frontside. Quand tu redescends, il faut atterrir sur la carre frontside pour éviter de faire une faute de carre.”"
+        author: "tisch"
+        dateAjout: <(new \DateTime('2017-11-09 13:10:48'))>
+        category: '@rotations'
+
+    Pretzels:
+        title: "Frontside Pretzels"
+        content: "Les Pretzels, c’est quand tu pivotes dans la direction opposée à la rotation initiale et c’est un concept qui peut se transposer sur les rails quand tu le maîtrise bien sur la neige.\r\n\r\n“Tu devras très probablement mettre un petit coup de hanche pour finir la rotation sur 720 degrés.”"
+        author: "tisch"
+        dateAjout: <(new \DateTime('2017-11-09 13:14:47'))>
+        category: '@rotations'
+
+    Frontside:
+        title: "Frontside Nose-roll 540's"
+        content: "Frontside Nose-roll 540's\r\n\r\n “A partir d’un léger carve sur les talons, tu vas presser le nose de la planche sur les talons et puis basculer sur les orteils on pointant les orteils au moment du 180, puis tu reviens sur les talons au quand tu atteins les 360 degrés.”"
+        author: "tisch"
+        dateAjout: <(new \DateTime('2017-11-09 13:18:39'))>
+        category: '@rotations'
+        

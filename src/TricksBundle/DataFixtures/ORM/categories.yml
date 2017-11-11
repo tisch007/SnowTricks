@@ -1,0 +1,18 @@
+TricksBundle\Entity\Category:
+    slides:
+        name: Slides
+
+    rotations:
+        name: Rotations
+
+    grabs:
+        name: Grabs
+
+    flips:
+        name: Flips
+
+    one foot tricks:
+        name: One foot tricks
+
+    old school:
+        name: Old school   

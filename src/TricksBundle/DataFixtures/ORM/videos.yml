@@ -1,0 +1,60 @@
+TricksBundle\Entity\Video:
+    Backside Triple Cork 1440:
+        tricks: '@Cork'
+        link: "https://www.youtube.com/watch?v=Br6ZJM01I6s"
+        name: "Backside Triple Cork 1440"
+
+    Method Air:
+      tricks: '@Method'
+      link: "https://www.youtube.com/watch?v=2Ul5P-KucE8"
+      name: "Method Air"
+
+    Double Backflip One Foot:
+      tricks: '@Backflip' 
+      link: "https://www.youtube.com/watch?v=HkBecIvzIAU"
+      name: "Double Backflip One Foot"
+
+    Double Mc Twist 1260:
+      tricks: '@Twist'
+      link: "https://www.youtube.com/watch?v=XATkSnCFsRU"
+      name: "Double Mc Twist 1260"
+
+    Double Backside Rodeo 1080:
+      tricks: '@Rodeo'
+      link: "https://www.youtube.com/watch?v=vquZvxGMJT0"
+      name: "Double Backside Rodeo 1080"
+
+    Backside Triple Cork 1440:
+      tricks: '@Cork'
+      link: "https://www.youtube.com/watch?v=URFnYGzu9lU"
+      name: "Backside Triple Cork 1440"
+
+    Backside Triple Cork 1440:
+      tricks: '@Cork'
+      link: "https://www.youtube.com/watch?v=Lh5-Gjh-y-M"
+      name: "Backside Triple Cork 1440"
+
+    Frontside Nose-roll Nollie 360's:
+      tricks: "@Nollie" 
+      link: "https://www.youtube.com/watch?v=bTGUwXBHJQc"
+      name: "Frontside Nose-roll Nollie 360's"
+
+    Tripod:
+      tricks: '@Tripods'
+      link: "https://www.youtube.com/watch?v=tpgdsuSXYbw"
+      name: "Tripods"
+
+    Nollie Backside 180s:
+      tricks: '@Backside'
+      link: "https://www.youtube.com/watch?v=b1_PYAIckZk"
+      name: "Nollie Backside 180s"
+
+    Frontside Pretzels:
+      tricks: '@Pretzels'
+      link: "https://www.youtube.com/watch?v=ppPzGk_RHg8"
+      name: "Frontside Pretzels"
+
+    Frontside Nose-roll 540's:
+      tricks: "@Frontside"
+      link: "https://www.youtube.com/watch?v=38IINv5Ggms"
+      name: "Frontside Nose-roll 540's"

@@ -1,5 +1,7 @@
 # SnowTricks
-Notice d'installation
+Le freestyle, c’est hyper fun, et dès les premiers jumps on peut se faire plaisir ! Pour débuter,
+progresser rapidement puis apprendre à faire ses premières rotations, voici quelques tricks.
+
 
 # Installation
 ## 1. Récupérer le code
@@ -14,7 +16,6 @@ Pour ne pas qu'on se partage tous nos mots de passe, le fichier `app/config/para
 ## 3. Télécharger les vendors
 Avec Composer bien évidemment :
 
-    php composer init
     php composer update
 
 ## 4. Créez la base de données
@@ -24,16 +25,11 @@ Si la base de données que vous avez renseignée dans l'étape 2 n'existe pas d�
 
 Puis créez les tables correspondantes au schéma Doctrine :
 
-    php bin/console doctrine:schema:update --dump-sql
     php bin/console doctrine:schema:update --force
 
-Enfin, éventuellement, ajoutez les fixtures :
+Enfin, ajoutez les fixtures :
 
-    php bin/console doctrine:fixtures:load
+    php bin/console hautelook:fixtures:load
 
-## 5. Publiez les assets
-Publiez les assets dans le répertoire web :
-
-    php bin/console assets:install web
 
 ## Enjoy it !
