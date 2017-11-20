@@ -22,8 +22,15 @@ use Pagerfanta\Pagerfanta;
 use Pagerfanta\Exception\NotValidCurrentPageException;
 
 
+/**
+ * Class TricksController
+ * @package TricksBundle\Controller
+ */
 class TricksController extends Controller
 {
+    /**
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function indexAction()
     {
         $repository = $this->getDoctrine()->getManager()->getRepository('TricksBundle:Tricks');
@@ -35,6 +42,11 @@ class TricksController extends Controller
         return $this->render('TricksBundle:Tricks:index.html.twig', array('listTricks' => $listTricks, 'listImage' => $listImage));
     }
 
+    /**
+     * @param $id
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     */
     public function viewAction($id, Request $request)
     {
         $em = $this->getDoctrine()->getManager();
@@ -117,6 +129,10 @@ class TricksController extends Controller
         ));
     }
 
+    /**
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     */
     public function addAction(Request $request)
     {
 
@@ -140,9 +156,13 @@ class TricksController extends Controller
             }
 
             if ($trick->getImage() !== null) {
-                foreach ($trick->getImage() as $image) {
-                    $image->setImageName($trick->getTitle());
-                    $image->setTricks($trick);
+                foreach ($trick->getImage() as $k => $image) {
+                    if ($image->getImageFile() === null) {
+                        unset($trick->getImage()[$k]);
+                    }else{
+                        $image->setImageName($trick->getTitle());
+                        $image->setTricks($trick);
+                    }
                 }
             }
 
@@ -157,6 +177,11 @@ class TricksController extends Controller
         ));
     }
 
+    /**
+     * @param $id
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     */
     public function editAction($id, Request $request)
     {
         $em = $this->getDoctrine()->getManager();
@@ -187,12 +212,17 @@ class TricksController extends Controller
                     $video->setTricks($trick);
                 }
             }
-            if ($trick->getImage() !== null) {
-                foreach ($trick->getImage() as $image) {
+
+            foreach ($trick->getImage() as $k => $image) {
+                var_dump($image);
+                if ($image->getImageFile() === null) {
+                    unset($trick->getImage()[$k]);
+                }else{
                     $image->setImageName($trick->getTitle());
                     $image->setTricks($trick);
                 }
             }
+
             $em->persist($trick);
             $em->flush();
             $request->getSession()->getFlashBag()->add('notice', 'La figure a été modifiée.');
@@ -206,6 +236,11 @@ class TricksController extends Controller
         ));
     }
 
+    /**
+     * @param $id
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     */
     public function deleteAction($id, Request $request)
     {
         $em = $this->getDoctrine()->getManager();
@@ -227,6 +262,10 @@ class TricksController extends Controller
             'form' => $form->createView()));
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     */
     public function ajaxAction($id)
     {
         $em = $this->getDoctrine()->getManager();

@@ -27,7 +27,7 @@ Puis créez les tables correspondantes au schéma Doctrine :
 
     php bin/console doctrine:schema:update --force
 
-Enfin, ajoutez les fixtures :
+Enfin, ajoutez les tricks :
 
     php bin/console hautelook:fixtures:load
 

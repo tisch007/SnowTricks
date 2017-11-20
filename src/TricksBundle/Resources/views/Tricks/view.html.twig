@@ -12,7 +12,7 @@
                 <em>Ajouté par : <strong>{{ trick.author }}</strong> le : {{ trick.dateAjout|date('d/m/Y à H:i') }}<br>
                     dans la catégorie <strong>{{ trick.category.name }}</strong></em></p>
 
-                {{ trick.content }}
+                {{ trick.content|raw }}
                 </br>
 
             </div>
@@ -122,7 +122,7 @@
                                             le {{ item.dateAjout|date('d/m/Y à H:i') }}
                                         </div>
                                         <div class="panel-body">
-                                            {{ item.content }}
+                                            {{ item.content|raw }}
                                         </div>
                                     </div>
                                 </div>
