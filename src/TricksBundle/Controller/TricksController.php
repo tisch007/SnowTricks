@@ -17,7 +17,6 @@ use TricksBundle\Form\TricksType;
 use TricksBundle\Form\CommentType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Pagerfanta\Adapter\DoctrineORMAdapter;
 use Pagerfanta\Pagerfanta;
 use Pagerfanta\Exception\NotValidCurrentPageException;
 
@@ -51,12 +50,8 @@ class TricksController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         //systeme de pagination
-        $queryBuilder = $em->createQueryBuilder()
-            ->select('u')
-            ->from('TricksBundle:Comment', 'u')
-            ->andWhere('u.tricks = :searchTerm')
-            ->setParameter('searchTerm', $id);
-        $adapter = new DoctrineORMAdapter($queryBuilder);
+
+        $adapter = $this->getDoctrine()->getRepository('TricksBundle:Tricks')->search($id, $em);
         $pagerfanta = new Pagerfanta($adapter);
         $haveToPaginate = $pagerfanta->haveToPaginate();
 
@@ -214,7 +209,6 @@ class TricksController extends Controller
             }
 
             foreach ($trick->getImage() as $k => $image) {
-                var_dump($image);
                 if ($image->getImageFile() === null) {
                     unset($trick->getImage()[$k]);
                 }else{
